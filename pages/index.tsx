@@ -65,7 +65,7 @@ export default function Home() {
           <div className='flex flex-col h-full justify-center pointer-events-none '>
             <div className='flex flex-col gap-3 md:flex-col lg:my-auto main-title justify-center'>
               <div className='text-center mt-20'>ORDER UP</div>
-              <div className='text-xl mx-4 font-[500] mb-10'>Digital Solutions for Your Food Truck</div>
+              <div className='text-xl mx-4 font-[500] mb-10 text-center'>Digital Solutions for Your Food Truck</div>
             </div>
             
             <div className="md:my-auto w-full mx-auto">
