@@ -53,7 +53,7 @@ export default function Home() {
         <meta property="og:image" content="/evolve-white.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="h-[100vh] flex justify-center">
+      <main className="h-[100vh] flex justify-center custom-bg">
         <div className='xl:my-24 2xl:mx-[20rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col'>
           <div className='hidden sm:inline'>
             <Navbar hamburger={false} home/>
@@ -106,8 +106,8 @@ export default function Home() {
           <Image src={"/3DTruck.png"} width={500} height={500} alt="Food Truck Graphic"/>
         </div>
       </section>
-      <section className='h-fit bg-[#E8E8E8] flex justify-center'>
-        <div className=' bg-[#222222] w-[80%] lg:w-[60%] h-fit my-5'>
+      <section className='h-fit bg-[#E8E8E8]  flex justify-center'>
+        <div className=' bg-[#323732] w-[80%] lg:w-[60%] h-fit my-5'>
           <form id="#form" className='flex flex-col m-12 gap-4 text-black' onSubmit={handleSubmit}>
             {loading &&
             <div className='h-[391px] flex'>
@@ -119,7 +119,7 @@ export default function Home() {
             }
             {formRes && formRes.success == true && 
             <div className='h-[391px] flex text-center md:text-left text-white'>
-              <div className='flex-col my-auto'>
+             <div className='flex-col my-auto'>
                 <h1 className='mx-auto md:ml-0 w-fit font-bold text-5xl mb-2'>Thank you!</h1>
                 <h2 className='my-auto mx-auto w-fit font-bold relative mb-2'>
                 We have received your submission and are looking it over. We will reach out to you within 24 hours via your preferred contact method.
@@ -138,7 +138,7 @@ export default function Home() {
           }
           {formRes == null && !loading &&
           <>
-            <h1 className='font-bold text-3xl text-white'>Ready to Evolve?</h1>
+            <h1 className='font-bold text-3xl text-white'>Ready to Get Started?</h1>
             <div className='flex flex-col lg:flex-row gap-4'>
               <input type="text" id="fname" onChange={(e)=>handleChange(e,"fname")} name="fname" placeholder=" First Name" className="lg:w-1/3 h-10 rounded-sm"/>
               <input type="text" id="lname" onChange={(e)=>handleChange(e,"lname")} name="lname" placeholder=" Last Name" className="lg:w-1/3 h-10 rounded-sm"/>
@@ -162,7 +162,7 @@ export default function Home() {
               </div>
              
             </div>
-            <button  type="submit" className='py-2 px-4 bg-blue-700 lg:w-44 text-white font-bold rounded-sm'>Submit</button>
+            <button  type="submit" className='py-2 px-4 bg-[#97BBAF] lg:w-44 text-white font-bold rounded-sm'>Submit</button>
             </>
           }
 
