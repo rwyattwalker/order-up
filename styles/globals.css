@@ -54,7 +54,8 @@ html{
 @media  screen and (max-width:500px) {
   .main-title{
     text-align: center;
-    font-size:2em;
+    font-size:3em;
+    font-weight: 600;
     line-height: normal;
   }
 }
