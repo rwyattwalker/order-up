@@ -83,7 +83,7 @@ export default function Home() {
       </main>
       <section className='min-h-[400px] sm:min-h-[70vh] -mt-[250px] sm:-mt-40 pb-10 h-fit flex flex-col bg-[#5C4934]'  id="services">
        
-        <div className=' h-fit mt-20 sm:mt-auto md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
+        <div className='h-fit mx-auto mt-40 md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
         {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>
           <h1 className="font-bold text-3xl underline">Services</h1>
           <p className='text-lg'>We offer a full range of services to take your website or app from an idea to fruition. Wether you need one or all of the services we provide, if it&apos;s on the web, we&apos;ve got you covered. 
@@ -97,7 +97,7 @@ export default function Home() {
               online ordering, and the latest technological features available, 
               we allow you to focus on what really matters, your customers.
             </p>
-            <button className='mr-auto py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold'>
+            <button className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold'>
               Get Started
             </button>
           </div>
@@ -109,7 +109,7 @@ export default function Home() {
       </section>
       <section className='min-h-[60vh] pb-10 h-fit flex flex-col bg-[#323732]'  id="services">
        
-        <div className=' h-fit mt-auto md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
+        <div className=' h-fit mx-auto md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
         {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>
           <h1 className="font-bold text-3xl underline">Services</h1>
           <p className='text-lg'>We offer a full range of services to take your website or app from an idea to fruition. Wether you need one or all of the services we provide, if it&apos;s on the web, we&apos;ve got you covered. 
@@ -127,15 +127,15 @@ export default function Home() {
             Increase visibility and reach a larger audience by taking advantage of the latest search engine optimizations. 
             Integrate your website with social media and location tracking to connect with customers in real-time and drive sales. 
             </p>
-            <button className='mr-auto py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold'>
+            <button className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold'>
               Get Started
             </button>
           </div>
         </div>
       </section>
-      <section className='min-h-[60vh] pb-10 h-fit flex flex-col bg-[#323732] -mt-1 sm:-mt-0'  id="services">
+      <section className='min-h-[60vh] pb-10 h-fit flex flex-col bg-[#323732] -mt-1'  id="services">
        
-       <div className=' h-fit mt-auto md:mx-20 lg:mx-44 flex flex-col-reverse sm:flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
+       <div className=' h-fit mx-auto md:mx-20 lg:mx-44 flex flex-col-reverse sm:flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
        {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>
          <h1 className="font-bold text-3xl underline">Services</h1>
          <p className='text-lg'>We offer a full range of services to take your website or app from an idea to fruition. Wether you need one or all of the services we provide, if it&apos;s on the web, we&apos;ve got you covered. 
@@ -149,7 +149,7 @@ export default function Home() {
            We handle the ordering so you can focus on the customer. &quot;Order Up!&quot;
           
            </p>
-           <button className='mr-auto py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold'>
+           <button className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold'>
              Get Started
            </button>
          </div>
