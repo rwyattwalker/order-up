@@ -38,12 +38,12 @@ function Navbar({hamburger, home, dark}:propTypes) {
       </div>
     }
     {hamburger &&
-      <div className='w-full  font-bold text-lg text-black bg-white flex justify-between fixed z-[50000]'>
+      <div className='w-full  font-bold text-lg text-white bg-[#97BBAF] flex justify-between fixed z-[50000]'>
         <Link className='hover:cursor-pointer my-auto mx-2 flex' href={"/"}>
-          <Image src="/hamburger-black.png" width={50} height={50} alt="logo" />
+          <Image src="/hamburger-white.png" width={50} height={50} alt="logo" />
           <div className='my-auto text-xl font-bold'>| ORDER UP</div>
         </Link>
-        <GiHamburgerMenu className={`text-3xl z-50 m-5 ${open ? 'text-blue-500' : 'text-black'}`} onClick={handleToggle}/>
+        <GiHamburgerMenu className={`text-3xl z-50 m-5 ${open ? 'text-[#97BBAF]' : 'text-white'}`} onClick={handleToggle}/>
         {open &&
           <div className='flex flex-col z-20 absolute top-0 w-full h-fit bg-white'>
             <Link href={"/pricing"} className="my-auto text-black font-bold py-2 px-4 w-fit">Pricing</Link>

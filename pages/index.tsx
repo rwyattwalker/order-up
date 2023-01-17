@@ -133,7 +133,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='min-h-[60vh] pb-10 h-fit flex flex-col bg-[#323732]'  id="services">
+      <section className='min-h-[60vh] pb-10 h-fit flex flex-col bg-[#323732] -mt-1 sm:-mt-0'  id="services">
        
        <div className=' h-fit mt-auto md:mx-20 lg:mx-44 flex flex-col-reverse sm:flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
        {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>
