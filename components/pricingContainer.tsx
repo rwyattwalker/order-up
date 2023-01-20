@@ -12,7 +12,7 @@ type props = {
 
 function PricingContainer({plan, headerText, price, bullets, classes, fee, text}:props) {
   return (
-    <div className={`${classes && classes} mx-auto flex flex-col my-auto bg-white rounded-md drop-shadow-lg h-[425px] w-[350px] px-2 py-2 text-center border-[#F5F5F5] border-2`}>
+    <div className={`${classes && classes} flex flex-col my-auto bg-white rounded-md drop-shadow-lg h-[425px] w-[350px] px-2 py-2 text-center border-[#F5F5F5] border-2`}>
       <h1 className='font-bold text-2xl mt-12 mb-3'>{plan}</h1>
       <h2 className='mt-2 mb-3'><span className='font-bold text-3xl'>{`${price}`}</span>&nbsp;/month</h2>
       <p className='mb-2'><span className='font-bold text-lg'>{`${fee}`}</span>&nbsp; set up fee</p>
