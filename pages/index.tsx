@@ -81,7 +81,7 @@ export default function Home() {
           </div> 
         </div>
       </main>
-      <section className='min-h-[400px] sm:min-h-[70vh] -mt-[250px] sm:-mt-40 pb-10 h-fit flex flex-col bg-[#5C4934]'  id="services">
+      <section className='min-h-[400px] sm:min-h-[70vh] -mt-[250px] sm:-mt-46 pb-10 h-fit flex flex-col bg-[#5C4934]'  id="services">
        
         <div className='h-fit mx-auto mt-40 md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
         {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>
@@ -173,20 +173,12 @@ export default function Home() {
             {formRes && formRes.success == true && 
             <div className='h-[391px] flex text-center md:text-left text-white'>
              <div className='flex-col my-auto'>
-                <h1 className='mx-auto md:ml-0 w-fit font-bold text-5xl mb-2'>Thank you!</h1>
+                <h1 className='mx-auto md:ml-0 w-fit font-bold text-5xl mb-2'>Order Up!</h1>
                 <h2 className='my-auto mx-auto w-fit font-bold relative mb-2'>
-                We have received your submission and are looking it over. We will reach out to you within 24 hours via your preferred contact method.
+                We have received your submission. We will reach out to you within 24 hours via your preferred contact method. We look forward to working with you.
               </h2>
-              <button type="button" className='py-2 px-4 bg-blue-600 rounded-sm font-bold text-white' onClick={() =>setFormRes(null)}>Submit another message</button>
+              <button type="button" className='py-2 px-4 bg-[#97BBAF] rounded-sm font-bold text-white' onClick={() =>setFormRes(null)}>Submit another message</button>
               </div>
-               <Image 
-                className="hidden md:inline"
-                src="/robot-reading.png"
-                alt="Cute Robot"
-                width={250}
-                height={600}
-                priority
-              />
             </div>
           }
           {formRes == null && !loading &&
