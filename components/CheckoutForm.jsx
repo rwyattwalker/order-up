@@ -142,9 +142,9 @@ export default function CheckoutForm({clientSecret}) {
 
   return (
     <> 
-      {paymentRequest &&
+      {/* {paymentRequest &&
         <PaymentRequestButtonElement options={{paymentRequest}} />
-      }
+      } */}
     <form id="payment-form" onSubmit={handleSubmit} className="mt-3">
      
       {/* <LinkAuthenticationElement
@@ -152,10 +152,16 @@ export default function CheckoutForm({clientSecret}) {
         onChange={(e) => setEmail(e.target.value)}
       /> */}
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <div>I Agree to Terms of Service</div>
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <div className="mt-2">     
+      <label> 
+        <input id="tos" type="checkbox" className="m-1 text-center" name="terms-and-conditions" />
+        I Agree to the <span className="text-blue-500">Terms and Conditions</span>
+      </label>
+   
+      </div>
+      <button disabled={isLoading || !stripe || !elements} id="submit" className="w-full py-2 bg-[#97BBAF] rounded text-white font-semibold">
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          {isLoading ? <div className="spinner" id="spinner"></div> : "Buy Now"}
         </span>
       </button>
       {/* Show any error or success messages */}

@@ -24,7 +24,7 @@ export default function App() {
   }, []);
 
   const appearance = {
-    theme: 'stripe',
+    theme: 'flat',
   };
   const options = {
     clientSecret,
@@ -32,13 +32,37 @@ export default function App() {
   };
 
   return (
-    <div className="flex w-[100vw] h-[100vh] bg-[#e1e1e1]">
-      <div className="my-auto mx-auto w-[500px] bg-white p-10 rounded">
+    <div className="flex min-w-[100vw] min-h-[100vh] bg-[#e1e1e1]">
+      <div className="absolute sm:top-0 sm:right-0 min-h-full w-full flex flex-col justify-center sm:w-[500px] bg-white p-10 sm:rounded">
+            <div className="absolute top-2 right-2">X</div>
+           <div className="flex flex-col mx-auto border border-gray-200 rounded w-full p-4">
+            <div className="font-bold text-2xl">Order Summary</div>
+            <div className="font-semibold ml-2 text-gray-500 border-b border-gray-500">Services</div>
+            <div className="flex flex-col">
+              <div className="ml-4  font-semibold text-black">Basic Website</div>
+              <div className="flex w-full justify-between">
+                <div className="ml-4 text-gray-400">Set Up Fee </div><div className="font-semibold text-black">$999</div>
+              </div>
+              <div className="flex w-full justify-between">
+                <div className="ml-4 text-gray-400">Monthly Subscription Cost</div><div className="font-semibold text-black">$159</div>
+              </div>
+            </div>
+            <div className="flex w-full justify-between mt-3">
+                <div className=" text-black font-bold">Total Due Today</div><div className="font-semibold text-black text-lg">$999</div>
+            </div>
+            {/* <label className="text-xs">
+              <input type="checkbox" />
+              I understand that the total due today is the <span className="font-bold">SET UP FEE</span> for 
+              my services only and that I must sign up for the necessary subscription(s) in order for my website or service to be deployed
+            </label> */}
+          </div><div className="separator flex flex-col w-full h-[1px] my-5"></div>
          {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm  clientSecret={clientSecret} />
           </Elements>
          )}
+         
+        
       </div>
      
     </div>
