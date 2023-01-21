@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     amount: 100,
     currency: "usd",
     automatic_payment_methods: {
-      enabled: true,
+      enabled: false,
     },
   });
   res.send({

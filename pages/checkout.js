@@ -11,7 +11,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 export default function App() {
   const [clientSecret, setClientSecret] = React.useState("");
-
+  
   React.useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("/api/create-payment-intent", {
@@ -33,11 +33,11 @@ export default function App() {
   };
 
   return (
-    <div className="flex w-[100vw] h-[100vh]">
-      <div className="my-auto mx-auto w-[500px] max-w-[1000px] bg-white p-10 rounded">
+    <div className="flex w-[100vw] h-[100vh] bg-[#e1e1e1]">
+      <div className="my-auto mx-auto w-[500px] bg-white p-10 rounded">
          {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm />
+            <CheckoutForm  clientSecret={clientSecret} />
           </Elements>
          )}
       </div>

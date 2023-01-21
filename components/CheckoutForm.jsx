@@ -7,7 +7,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({clientSecret}) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -16,10 +16,65 @@ export default function CheckoutForm() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [paymentRequest, setPaymentRequest] = React.useState(null);
 
+
+
+  React.useEffect(()=>{
+    if(!stripe || !elements){
+      return;
+    }
+      const pr = stripe.paymentRequest({
+        country: 'US',
+        currency: 'usd',
+        total: {
+          label: 'Hello',
+          amount: 100,
+        },
+        requestPayerName: true,
+        requestPayerEmail: true,
+      });
+
+      // Check the availability of the Payment Request API.
+      pr.canMakePayment().then(result => {
+        if (result) {
+          setPaymentRequest(pr);
+        }
+      });
+      pr.on('paymentmethod', async (e) => {
+        //create payment intent on server
+        // const {clientSecret} = await fetch("/api/create-payment-intent", {
+        //   method: 'POST',
+        //   headers:{
+        //     'Content-Type':'application/json',
+        //   },
+        //   body:JSON.stringify({
+        //     paymentMethodType: 'card',
+        //     currency: 'usd',
+        //   }),
+        // }).then(r => r.json());
+        //confirm the payment intent on client
+        const {error, paymentIntent} = await stripe.confirmCardPayment(
+          clientSecret, {
+            payment_method: e.paymentMethod.id,
+          },{
+            handleActions: false,
+          }
+        )
+        if(error){
+          e.complete('fail');
+          return;
+        }
+        e.complete('success');
+        if(paymentIntent.status == 'requires_action'){
+          stripe.confirmCardPayment(clientSecret);
+        }
+      });
+  }, [stripe, elements, clientSecret]);
+
   React.useEffect(() => {
     if (!stripe) {
       return;
     }
+
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
@@ -46,62 +101,6 @@ export default function CheckoutForm() {
     });
   }, [stripe]);
 
-  React.useEffect(()=>{
-    if (stripe) {
-      const pr = stripe.paymentRequest({
-        country: 'US',
-        currency: 'usd',
-        total: {
-          label: 'Demo total',
-          amount: 1,
-        },
-        requestPayerName: true,
-        requestPayerEmail: true,
-      });
-
-      // Check the availability of the Payment Request API.
-      pr.canMakePayment().then(result => {
-        if (result) {
-          setPaymentRequest(pr);
-        }
-      });
-    }
-   
-  }, [stripe]);
- paymentRequest?.on('paymentmethod', async (ev) => {
-      // Confirm the PaymentIntent without handling potential next actions (yet).
-      const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(
-        clientSecret,
-        {payment_method: ev.paymentMethod.id},
-        {handleActions: false}
-      );
-    
-      if (confirmError) {
-        // Report to the browser that the payment failed, prompting it to
-        // re-show the payment interface, or show an error message and close
-        // the payment interface.
-        ev.complete('fail');
-      } else {
-        // Report to the browser that the confirmation was successful, prompting
-        // it to close the browser payment method collection interface.
-        ev.complete('success');
-        console.log('success')
-        // Check if the PaymentIntent requires any actions and if so let Stripe.js
-        // handle the flow. If using an API version older than "2019-02-11"
-        // instead check for: `paymentIntent.status === "requires_source_action"`.
-        if (paymentIntent.status === "requires_action") {
-          // Let Stripe.js handle the rest of the payment flow.
-          const {error} = await stripe.confirmCardPayment(clientSecret);
-          if (error) {
-            // The payment failed -- ask your customer for a new payment method.
-          } else {
-            // The payment has succeeded.
-          }
-        } else {
-          // The payment has succeeded.
-        }
-      }
-    });
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -135,6 +134,7 @@ export default function CheckoutForm() {
     setIsLoading(false);
   };
 
+
   const paymentElementOptions = {
     layout: "tabs",
   };
@@ -145,14 +145,14 @@ export default function CheckoutForm() {
       {paymentRequest &&
         <PaymentRequestButtonElement options={{paymentRequest}} />
       }
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form id="payment-form" onSubmit={handleSubmit} className="mt-3">
      
       {/* <LinkAuthenticationElement
         id="link-authentication-element"
         onChange={(e) => setEmail(e.target.value)}
       /> */}
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-
+      <div>I Agree to Terms of Service</div>
       <button disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
