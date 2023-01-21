@@ -21,7 +21,9 @@ function PriceBundleContainer({plan, headerText, price, bullets, classes, fee, t
           <h1 className='font-bold text-2xl mb-3 hidden md:inline'>{plan}</h1>
           <h2 className='mt-2 mb-3'><span className='font-bold text-3xl'>{`${price}`}</span>&nbsp;/month</h2>
           <p className='mb-2'><span className='font-bold text-lg'>{`${fee}`}</span>&nbsp; set up fee</p>
-          <p className='my-4 mx-2'>{text}</p>
+          <p className='my-4 mx-2'>
+            Our best deal for the 21st Century Food Truck! Includes everything from the <span className='font-semibold'>Premium Web</span>, <span className='font-semibold'>Mobile Ordering</span>, and <span className='font-semibold'>Event Booking</span> Packages, all for one low price.
+          </p>
         
           <button className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Get Started</button>
         </div>

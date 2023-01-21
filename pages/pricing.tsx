@@ -25,7 +25,7 @@ export default function Pricing() {
           <PricingContainer text={"From patio buyouts to weddings, birthdays, and more, our platform makes it easy for diners to book"} fee={"$199"} classes={"2xl:mt-10"} plan={"Event Booking"} headerText={"Sign up for the basic plan."} price={"$49"} bullets={["Custom Website", "Real Time Location Tracking"]} />
         </div>
           <div className='font-bold text-4xl'>Bundle & Save!</div>
-          <PriceBundleContainer text={"Our best deal for the 21st Century Food Truck! Includes everything from the Premium Web, Mobile Ordering, and Event Booking Packages, all for one low price."} fee={"$1499"} classes={"2xl:mt-10"} plan={"Order Up Bundle!"} headerText={"Sign up for the basic plan."} price={"$249"} bullets={["Custom Website", "SEO Optimization", "Real Time Location Tracking", "Accept and Manage Orders Online", "Easily Update Menu", "Yearly Site Redesign"]} />
+          <PriceBundleContainer text={"Our best deal for the 21st Century Food Truck! Includes everything from the Premium Web, Mobile Ordering, and Event Booking Packages, all for one low price."} fee={"$1499"} classes={"2xl:mt-10"} plan={"Order Up Bundle!"} headerText={"Sign up for the basic plan."} price={"$249"} bullets={["Custom Website","Mobile Friendly", "SEO Optimization", "Real Time Location Tracking", "Accept and Manage Orders Online", "Easily Update Menu & Hours", "Yearly Site Redesign"]} />
      </div>
     </section>
     </>
