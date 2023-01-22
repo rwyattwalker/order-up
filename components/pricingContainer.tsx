@@ -29,7 +29,7 @@ function PricingContainer({plan, headerText, price, bullets, classes, fee, text}
           )
         })}
       </ul> */}
-      <button className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Get Started</button>
+      <button className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Add to Order</button>
     </div>
   )
 }

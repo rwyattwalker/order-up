@@ -57,7 +57,7 @@ export default function Home() {
       <main className="h-[100vh] flex justify-center custom-bg">
         <div className='xl:my-24 2xl:mx-[20rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col'>
           <div className='hidden sm:inline'>
-            <Navbar hamburger={false} home/>
+            <Navbar hamburger={false} home getStarted />
           </div>
           <div className='sm:hidden'>
             <Navbar hamburger={true} home/>

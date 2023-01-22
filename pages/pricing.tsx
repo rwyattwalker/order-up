@@ -12,7 +12,7 @@ export default function Pricing() {
    <section className='w-[100vw] max-w-[100vw] overflow-x-hidden min-h-[100vh] text-center  bg-[#E8E8E8] flex'>
     <div className='flex flex-col justify-center min-h-[100vh] gap-4 mx-auto mt-12'>
       <div className='hidden md:inline'>
-        <Navbar hamburger={false} dark/>
+        <Navbar hamburger={false} dark shoppingCart/>
       </div>
       <div className='max-w-md md:max-w-4xl flex mx-auto flex-col '>
          <h1 className='font-bold text-3xl mt-12 2xl:mt-0 text-center' >Flexible plans designed with your needs in mind.</h1>

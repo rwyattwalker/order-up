@@ -3,14 +3,17 @@ import React, { useEffect } from 'react'
 import {GiHamburgerMenu} from "react-icons/gi"
 import {useState} from "react"
 import Image from "next/image"
+import {BsCart4} from "react-icons/bs"
 
 type propTypes = {
   hamburger: boolean,
   home?: boolean,
-  dark?: boolean
+  dark?: boolean,
+  shoppingCart?: boolean,
+  getStarted?: boolean
 }
 
-function Navbar({hamburger, home, dark}:propTypes) {
+function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
   const [open, setOpen] = useState(false);
   const [viewportHeight, setViewportHeight] = useState<null | number>(null);
   useEffect(()=>{
@@ -30,10 +33,16 @@ function Navbar({hamburger, home, dark}:propTypes) {
           <Image src={`${dark ? '/hamburger-black.png' : '/hamburger-white.png'}`} width={50} height={50} alt="logo" />
         </Link>
         <div className='flex gap-8'>
-          <Link href={"/pricing"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>Pricing</Link>
-          <Link href={"/#form"} >
+          <Link href={"/pricing"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>FAQ</Link>
+          <Link href={"/pricing"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>Contact</Link>
+          { getStarted &&
+            <Link href={"/pricing"} >
             <button className="bg-[#EB9B2F] text-white rounded-full font-bold py-2 px-4 cursor-pointer pointer-events-none">Get Started</button>
           </Link>
+          }
+            { shoppingCart &&
+              <div className='text-black text-2xl flex relative'><BsCart4 className='my-auto relative'/><span className='bg-blue-500 rounded-full badge p-1 mt-1 text-white absolute top-0 -right-1'>5</span></div>
+            }
         </div>
       </div>
     }

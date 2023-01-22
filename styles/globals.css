@@ -16,6 +16,11 @@ html{
   align-self: stretch;
 }
 
+.badge{
+  font-size: 0.7rem/* 12px */;
+  line-height: 0.5rem/* 16px */;
+}
+
 @media screen and (min-width:600px){
   .middle{
   position: absolute;
