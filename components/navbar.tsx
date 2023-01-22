@@ -51,8 +51,9 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
         <Link className='hover:cursor-pointer my-auto mx-2 flex' href={"/"}>
           <Image src="/hamburger-white.png" width={50} height={50} alt="logo" />
           <div className='my-auto text-xl font-bold'>| ORDER UP</div>
-        </Link>
-        <GiHamburgerMenu className={`text-3xl z-50 m-5 ${open ? 'text-white': 'text-white'}`} onClick={handleToggle}/>
+        </Link> 
+          <GiHamburgerMenu className={`text-3xl z-50 m-5 ${open ? 'text-white': 'text-white'}`} onClick={handleToggle}/> 
+        
         {open &&
           <div className='flex flex-col z-20 absolute top-0 w-full h-fit bg-[#97BBAF]'>
             <Link href={"/pricing"} className="my-auto text-white font-bold py-2 px-4 w-fit">Pricing</Link>
