@@ -4,6 +4,7 @@ import {GiHamburgerMenu} from "react-icons/gi"
 import {useState} from "react"
 import Image from "next/image"
 import {BsCart4} from "react-icons/bs"
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 type propTypes = {
   hamburger: boolean,
@@ -14,6 +15,7 @@ type propTypes = {
 }
 
 function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
+  const {openCart, closeCart, visible, cartItems} = useShoppingCart()
   const [open, setOpen] = useState(false);
   const [viewportHeight, setViewportHeight] = useState<null | number>(null);
   useEffect(()=>{
@@ -41,7 +43,9 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           </Link>
           }
             { shoppingCart &&
-              <div className='text-black text-2xl flex relative'><BsCart4 className='my-auto relative'/><span className='bg-blue-500 rounded-full badge p-1 mt-1 text-white absolute top-0 -right-1'>5</span></div>
+              <div className='text-black text-2xl flex relative cursor-pointer' onClick={()=>visible ? closeCart() : openCart()}>
+                <BsCart4 className='my-auto relative'/><span className={`${cartItems.length == 0 && "hidden"} bg-blue-500 rounded-full badge p-1 mt-1 text-white absolute top-0 -right-1`}>{cartItems.length}</span>
+              </div>
             }
         </div>
       </div>
@@ -52,7 +56,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           <Image src="/hamburger-white.png" width={50} height={50} alt="logo" />
           <div className='my-auto text-xl font-bold'>| ORDER UP</div>
         </Link> 
-          <GiHamburgerMenu className={`text-3xl z-50 m-5 ${open ? 'text-white': 'text-white'}`} onClick={handleToggle}/> 
+          <GiHamburgerMenu className={`text-3xl z-50 my-5 mx-3 ${open ? 'text-white': 'text-white'}`} onClick={handleToggle}/> 
         
         {open &&
           <div className='flex flex-col z-20 absolute top-0 w-full h-fit bg-[#97BBAF]'>

@@ -1,6 +1,7 @@
 import React from 'react'
 
 type props = {
+  id:number,
   plan: String,
   headerText: String,
   price: String,
@@ -10,7 +11,7 @@ type props = {
   text: String,
 }
 
-function PriceBundleContainer({plan, headerText, price, bullets, classes, fee, text}:props) {
+function PriceBundleContainer({plan, headerText, price, bullets, classes, fee, text, id}:props) {
   return (
     <div className={`${classes && classes} flex flex-col my-auto bg-white rounded-md drop-shadow-lg min-h-[425px] w-[350px] md:w-full max-w-[725px] xl:max-w-4xl mx-auto pb-2 text-center border-[#F5F5F5] border-2 mb-10`}>
       
