@@ -3,19 +3,24 @@ import Navbar from '../components/navbar'
 import PricingContainer from '../components/pricingContainer'
 import PriceBundleContainer from '../components/priceBundleContainer'
 import Cart from '../components/Cart'
+import ClientOnly from '../components/ClientOnly'
 
 export default function Pricing() {
-  return (
+    return (
     <>
-      <Cart />
-      <div className='md:hidden'>
-        <Navbar hamburger={true} dark/>
-      </div>
+      <ClientOnly>
+        <Cart />
+        <div className='md:hidden'>
+          <Navbar hamburger={true} dark/>
+        </div> 
+      </ClientOnly>
    <section className='w-[100vw] max-w-[100vw] overflow-x-hidden min-h-[100vh] text-center  bg-[#E8E8E8] flex'>
     <div className='flex flex-col justify-center min-h-[100vh] gap-4 mx-auto mt-12'>
       <div className='hidden md:inline'>
-        <Navbar hamburger={false} dark shoppingCart/>
-      </div>
+        <ClientOnly>
+          <Navbar hamburger={false} dark shoppingCart/>
+        </ClientOnly>
+      </div> 
       <div className='max-w-md md:max-w-4xl flex mx-auto flex-col '>
          <h1 className='font-bold text-3xl mt-12 2xl:mt-0 text-center' >Flexible plans designed with your needs in mind.</h1>
         <p className=' lg:max-w-3xl mx-2 sm:mx-auto text-center'>Lorem ipsum dolor sit amett consectetud adipisicing elit. Voluptas voluptatibus, veritatis voluptates iure nisi cumque expedita veniam fuga eius deleniti autem ullam sequi nostrum error repellat dolorem vel porro delectus.</p>
@@ -32,4 +37,5 @@ export default function Pricing() {
     </section>
     </>
   )
+  
 }

@@ -4,12 +4,12 @@ import { useShoppingCart } from '../context/ShoppingCartContext'
 type props = {
   id: number,
   plan: string,
-  headerText: String,
-  price: String,
-  bullets: String[],
-  classes?: String,
-  fee: String,
-  text: String,
+  headerText: string,
+  price: string,
+  bullets: string[],
+  classes?: string,
+  fee: string,
+  text: string,
 }
 
 function PricingContainer({plan:name, headerText, price, bullets, classes, fee, text, id}:props) {
@@ -20,7 +20,7 @@ function PricingContainer({plan:name, headerText, price, bullets, classes, fee, 
       <h2 className='mt-2 mb-3'><span className='font-bold text-3xl'>{`${price}`}</span>&nbsp;/month</h2>
       <p className='mb-2'><span className='font-bold text-lg'>{`${fee}`}</span>&nbsp; set up fee</p>
       <p className='my-4'>{text}</p>
-      <button onClick={()=>increaseCartQuantity(id, name)} className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Add to Order</button>
+      <button onClick={()=>increaseCartQuantity(id, name, fee, price)} className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Add to Order</button>
     </div>
   )
 }

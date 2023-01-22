@@ -1,8 +1,9 @@
 import React from 'react'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 type props = {
   id:number,
-  plan: String,
+  plan: string,
   headerText: String,
   price: String,
   bullets: String[],
@@ -12,6 +13,7 @@ type props = {
 }
 
 function PriceBundleContainer({plan, headerText, price, bullets, classes, fee, text, id}:props) {
+  const {increaseCartQuantity} = useShoppingCart()
   return (
     <div className={`${classes && classes} flex flex-col my-auto bg-white rounded-md drop-shadow-lg min-h-[425px] w-[350px] md:w-full max-w-[725px] xl:max-w-4xl mx-auto pb-2 text-center border-[#F5F5F5] border-2 mb-10`}>
       
@@ -26,7 +28,7 @@ function PriceBundleContainer({plan, headerText, price, bullets, classes, fee, t
             Our best deal for the 21st Century Food Truck! Includes everything from the <span className='font-semibold'>Premium Web</span>, <span className='font-semibold'>Mobile Ordering</span>, and <span className='font-semibold'>Event Booking</span> Packages, all for one low price.
           </p>
         
-          <button className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Get Started</button>
+          <button onClick={()=>increaseCartQuantity(id, plan)} className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Add to Order</button>
         </div>
         <div className='separator h-[80%] w-[80%] md:w-[1px] flex flex-col md:flex-row my-auto mx-auto md:mx-0'></div>
         <div className='flex flex-col mx-auto'>

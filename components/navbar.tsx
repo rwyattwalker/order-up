@@ -44,7 +44,20 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           }
             { shoppingCart &&
               <div className='text-black text-2xl flex relative cursor-pointer' onClick={()=>visible ? closeCart() : openCart()}>
-                <BsCart4 className='my-auto relative'/><span className={`${cartItems.length == 0 && "hidden"} bg-blue-500 rounded-full badge p-1 mt-1 text-white absolute top-0 -right-1`}>{cartItems.length}</span>
+                <BsCart4 className='my-auto relative'/>
+                <div className={`${cartItems.length == 0 && 'hidden'} rounded-full bg-blue-500 flex justify-center align-middle text-xs`}
+                    style={{
+                      color: "white",
+                      width: "1rem",
+                      height: "1rem",
+                      position: "absolute",
+                      top: 0,
+                      right: 0,
+                      transform: "translate(25%, 25%)",
+                    }}
+                  >
+                {cartItems.length}
+              </div>
               </div>
             }
         </div>

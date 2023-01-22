@@ -21,9 +21,9 @@ function Cart() {
             <p className='h-fit px-4 my-auto'>{e.quantity}</p>
             <button onClick={()=> increaseCartQuantity(e.id, e.name)} className='bg-gray-200 h-[92%] my-auto px-4 rounded text-center'>+</button>
           </div>
-          <div onClick={()=> removeFromCart(e.id)} className='my-auto text-lg text-gray-300 ml-auto cursor-pointer'>
+          <button onClick={()=> removeFromCart(e.id)} className='my-auto text-lg text-gray-300 ml-auto cursor-pointer'>
             <ImCross />
-          </div>
+          </button>
         </div>
         })
       }
