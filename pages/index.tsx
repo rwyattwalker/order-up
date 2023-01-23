@@ -70,7 +70,7 @@ export default function Home() {
               online ordering, and the latest technological features available, 
               we allow you to focus on what really matters, your customers.
             </p>
-            <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold' href={'/pricing'}>
+            <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold text-center' href={'/pricing'}>
              Get Started
            </Link>
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
             Increase visibility and reach a larger audience by taking advantage of the latest search engine optimizations. 
             Integrate your website with social media and location tracking to connect with customers in real-time and drive sales. 
             </p>
-            <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold' href={'/pricing'}>
+            <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold text-center' href={'/pricing'}>
              Get Started
            </Link>
           </div>
@@ -122,7 +122,7 @@ export default function Home() {
            We handle the ordering so you can focus on the customer. &quot;Order Up!&quot;
           
            </p>
-           <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold' href={'/pricing'}>
+           <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold text-center' href={'/pricing'}>
              Get Started
            </Link>
          </div>
