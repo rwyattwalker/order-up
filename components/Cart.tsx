@@ -1,6 +1,7 @@
 import React from 'react'
 import {ImCross} from 'react-icons/im'
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import Link from 'next/link'
 
 
 
@@ -19,7 +20,7 @@ function Cart() {
           <div className='flex text-center ml-auto'>
             <button onClick={()=> decreaseCartQuantity(e.id)} className='bg-gray-200 h-[92%] my-auto px-4 rounded text-center'>-</button>
             <p className='h-fit px-4 my-auto'>{e.quantity}</p>
-            <button onClick={()=> increaseCartQuantity(e.id, e.name)} className='bg-gray-200 h-[92%] my-auto px-4 rounded text-center'>+</button>
+            <button onClick={()=> increaseCartQuantity(e.id, e.name, e.price, e.fee)} className='bg-gray-200 h-[92%] my-auto px-4 rounded text-center'>+</button>
           </div>
           <button onClick={()=> removeFromCart(e.id)} className='my-auto text-lg text-gray-300 ml-auto cursor-pointer'>
             <ImCross />
@@ -28,9 +29,9 @@ function Cart() {
         })
       }
      
-      <button className='mt-auto py-2 w-full bg-[#EB9B2F] rounded text-white font-semibold'>
+      <Link className='mt-auto py-2 w-full bg-[#EB9B2F] rounded text-white font-semibold text-center' href={'/checkout'}>
         Proceed to Checkout
-      </button>
+      </Link>
     </div>
   )
 }
