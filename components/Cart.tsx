@@ -32,7 +32,7 @@ function Cart() {
         })
       }
      
-      <Link className='mt-auto py-2 w-full bg-[#EB9B2F] rounded text-white font-semibold text-center text-lg' href={'/checkout'}>
+      <Link className={`mt-auto py-2 w-full ${cartItems.length == 0 ? 'bg-gray-400 pointer-events-none' : 'bg-[#EB9B2F]'}  rounded text-white font-semibold text-center text-lg`} href={'/checkout'}>
         Proceed to Checkout
       </Link>
     </div>
