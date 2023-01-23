@@ -12,7 +12,7 @@ function Cart() {
     <div className={`${visible ? "" : "hidden"} p-4 z-[9999999999999999999] text-black right-0  top-[70px] sm:top-10 sm:right-0 w-[90vw] sm:w-[500px] absolute bg-white rounded border-l-gray-300 flex flex-col`}>
       <h1 className='font-bold text-2xl text-center'>My Order</h1>
       {cartItems.length == 0 && 
-        <h2 className='font-[500] text-lg'>Your have no services selected</h2>
+        <h2 className='font-[500] text-lg text-center'>Your have no services selected</h2>
       }
       {cartItems &&
         cartItems.map((e,i)=> {
