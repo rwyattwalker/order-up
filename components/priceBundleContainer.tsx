@@ -4,12 +4,12 @@ import { useShoppingCart } from '../context/ShoppingCartContext'
 type props = {
   id:number,
   plan: string,
-  headerText: String,
-  price: String,
-  bullets: String[],
-  classes?: String,
-  fee: String,
-  text: String,
+  headerText: string,
+  price: string,
+  bullets: string[],
+  classes?: string,
+  fee: string,
+  text: string,
 }
 
 function PriceBundleContainer({plan, headerText, price, bullets, classes, fee, text, id}:props) {
