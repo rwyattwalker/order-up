@@ -5,6 +5,7 @@ import {useState} from "react"
 import Image from "next/image"
 import {BsCart4} from "react-icons/bs"
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import Cart from './Cart'
 
 type propTypes = {
   hamburger: boolean,
@@ -43,8 +44,8 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           </Link>
           }
             { shoppingCart &&
-              <div className='text-black text-2xl flex relative cursor-pointer' onClick={()=>visible ? closeCart() : openCart()}>
-                <BsCart4 className='my-auto relative'/>
+              <div className='text-black text-2xl flex relative' >
+                <BsCart4 className='my-auto relative cursor-pointer' onClick={()=>visible ? closeCart() : openCart()}/>
                 <div className={`${cartItems.length == 0 && 'hidden'} rounded-full bg-blue-500 flex justify-center align-middle text-xs`}
                     style={{
                       color: "white",
@@ -58,6 +59,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
                   >
                 {cartItems.length}
               </div>
+              <Cart />
               </div>
             }
         </div>
@@ -69,7 +71,15 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           <Image src="/hamburger-white.png" width={50} height={50} alt="logo" />
           <div className='my-auto text-xl font-bold'>| ORDER UP</div>
         </Link> 
+        <div className='flex'>
           <GiHamburgerMenu className={`text-3xl z-50 my-5 mx-3 ${open ? 'text-white': 'text-white'}`} onClick={handleToggle}/> 
+          <div className='flex separator h-[80%] my-auto'></div>
+          <div className='relative my-auto'>
+            <BsCart4 className='my-auto relative cursor-pointer text-3xl mx-3' onClick={()=>visible ? closeCart() : openCart()}/>
+            <Cart />
+          </div>
+        </div>
+          
         
         {open &&
           <div className='flex flex-col z-20 absolute top-0 w-full h-fit bg-[#97BBAF]'>

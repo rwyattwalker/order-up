@@ -9,7 +9,7 @@ export default function Pricing() {
     return (
     <>
       <ClientOnly>
-        <Cart />
+        {/* <Cart /> */}
         <div className='md:hidden'>
           <Navbar hamburger={true} dark/>
         </div> 
