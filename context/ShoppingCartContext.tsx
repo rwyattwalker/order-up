@@ -19,8 +19,8 @@ type CartItem ={
   id:number
   quantity: number
   name:string
-  price?: string
-  fee?: string
+  price: string
+  fee: string
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
@@ -42,6 +42,7 @@ export function ShoppingCartProvider({children}:Props){
   function increaseCartQuantity(id:number, name:string, fee:string, price:string){
     setCartItems(currItems => {
       if(currItems.find(item => item.id === id)==null){
+        openCart()
         return [...currItems, {id, quantity:1, name, fee, price}]
       } else {
         return currItems.map(item => {
