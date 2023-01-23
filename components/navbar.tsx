@@ -37,7 +37,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
         </Link>
         <div className='flex gap-8'>
           <Link href={"/pricing"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>FAQ</Link>
-          <Link href={"/pricing"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>Contact</Link>
+          <Link href={"/contact"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>Contact</Link>
           { getStarted &&
             <Link href={"/pricing"} >
             <button className="bg-[#EB9B2F] text-white rounded-full font-bold py-2 px-4 cursor-pointer pointer-events-none">Get Started</button>
