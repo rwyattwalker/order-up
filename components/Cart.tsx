@@ -9,8 +9,11 @@ function Cart() {
   const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingCart()
   const {cartItems, visible} = useShoppingCart()
   return (
-    <div className={`${visible ? "" : "hidden"} p-4 z-[9999999999999999999]  top-10 right-0  min-w-[500px] absolute bg-white rounded border-l-gray-300 flex flex-col`}>
+    <div className={`${visible ? "" : "hidden"} p-4 z-[9999999999999999999] text-black right-0  top-[70px] sm:top-10 sm:right-0 w-[90vw] sm:w-[500px] absolute bg-white rounded border-l-gray-300 flex flex-col`}>
       <h1 className='font-bold text-2xl text-center'>My Cart</h1>
+      {cartItems.length == 0 && 
+        <h2 className=''>Your cart is currently empty</h2>
+      }
       {cartItems &&
         cartItems.map((e,i)=> {
           return <div key={i} className='w-full my-1 border-t border-gray-300 flex justify-start h-10'>
@@ -23,7 +26,7 @@ function Cart() {
             <button onClick={()=> increaseCartQuantity(e.id, e.name, e.price, e.fee)} className='bg-gray-200 h-[92%] my-auto px-4 rounded text-center'>+</button>
           </div>
           <button onClick={()=> removeFromCart(e.id)} className='my-auto text-lg text-gray-300 ml-auto cursor-pointer'>
-            <ImCross />
+            <ImCross className='ml-2 '/>
           </button>
         </div>
         })
