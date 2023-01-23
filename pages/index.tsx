@@ -5,6 +5,7 @@ import Navbar from '../components/navbar'
 import Service from '../components/service'
 import { use, useEffect, useState } from 'react'
 import CircularProgress from '@mui/material/CircularProgress';
+import ClientOnly from '../components/ClientOnly'
 
 type formResType = {
   success: boolean
@@ -57,10 +58,14 @@ export default function Home() {
       <main className="h-[100vh] flex justify-center custom-bg">
         <div className='xl:my-24 2xl:mx-[20rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col'>
           <div className='hidden sm:inline'>
-            <Navbar hamburger={false} home getStarted />
+            <ClientOnly>
+              <Navbar hamburger={false} home getStarted />
+            </ClientOnly>
           </div>
           <div className='sm:hidden'>
-            <Navbar hamburger={true} home/>
+            <ClientOnly>
+              <Navbar hamburger={true} home/>
+            </ClientOnly>
           </div>
           <div className='flex flex-col h-full justify-center pointer-events-none '>
             <div className='flex flex-col gap-3 md:flex-col lg:my-auto main-title justify-center'>
