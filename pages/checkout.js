@@ -56,15 +56,21 @@ export default function Checkout() {
     appearance,
   };
 
-  return (
+  return (<>
+    <div className='md:hidden'>
+          <Navbar hamburger={true} dark/>
+      </div>
     <div className="flex min-w-[100vw] min-h-[100vh] bg-[#e1e1e1]">
-      <div className="flex flex-col my-20 mx-auto w-[1000px] xl:w-[1200px] gap-2">
-      <Navbar dark />
-      <div className="flex justify-center lg:justify-between w-full gap-10">
+      <div className="flex flex-col mt-[70px] md:my-20 mx-auto md:w-[800px] lg:w-[1000px] xl:w-[1200px] gap-2">
+      
+      <div className='hidden md:inline'>
+          <Navbar hamburger={false} dark shoppingCart/>
+      </div>
+      <div className="flex justify-center lg:justify-between w-full h-full gap-10">
         <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%]">
           <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
         </div>
-          <div className="h-fit my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 sm:rounded">
+          <div className="h-fit my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 rounded">
            <div className="flex flex-col mx-auto border border-gray-200 rounded w-full p-4">
             <div className="font-bold text-2xl">Order Summary</div>
             <div className="font-semibold ml-2 text-gray-500 border-b border-gray-500">Services</div>
@@ -97,7 +103,7 @@ export default function Checkout() {
         </div> 
         </div>
       </div>
-    </div>
+    </div></>
   );
   
 }
