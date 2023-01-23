@@ -36,7 +36,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           <Image src={`${dark ? '/hamburger-black.png' : '/hamburger-white.png'}`} width={50} height={50} alt="logo" />
         </Link>
         <div className='flex gap-8'>
-          <Link href={"/pricing"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>FAQ</Link>
+          <Link href={"/faq"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>FAQ</Link>
           <Link href={"/contact"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>Contact</Link>
           { getStarted &&
             <Link href={"/pricing"} >
@@ -96,8 +96,9 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
         
         {open &&
           <div className='flex flex-col z-20 absolute top-0 w-full h-fit bg-[#97BBAF]'>
-            <Link href={"/pricing"} className="my-auto text-white font-bold py-2 px-4 w-fit">Pricing</Link>
-            <Link href={"/#form"} className=" text-white font-bold py-2 px-4">Get Started</Link>
+            <Link href={"/contact"} className="my-auto text-white font-bold py-2 px-4 w-fit">Contact</Link>
+            <Link href={"/faq"} className="my-auto text-white font-bold py-2 px-4 w-fit">FAQ</Link>
+            <Link href={"/pricing"} className=" text-white font-bold py-2 px-4">Get Started</Link>
           
           </div>
         }
