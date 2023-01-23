@@ -2,8 +2,10 @@ import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import {useShoppingCart} from '../context/ShoppingCartContext.tsx'
+import Navbar from '../components/navbar'
 
 import CheckoutForm from "../components/CheckoutForm.jsx";
+import Image from "next/image";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -56,8 +58,13 @@ export default function Checkout() {
 
   return (
     <div className="flex min-w-[100vw] min-h-[100vh] bg-[#e1e1e1]">
-      <div className="absolute sm:top-0 sm:right-0 min-h-full w-full flex flex-col justify-center sm:w-[500px] bg-white p-10 sm:rounded">
-            <div className="absolute top-2 right-2">X</div>
+      <div className="flex flex-col my-20 mx-auto w-[1000px] xl:w-[1200px] gap-2">
+      <Navbar dark />
+      <div className="flex justify-center lg:justify-between w-full gap-10">
+        <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%]">
+          <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
+        </div>
+          <div className="h-fit my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 sm:rounded">
            <div className="flex flex-col mx-auto border border-gray-200 rounded w-full p-4">
             <div className="font-bold text-2xl">Order Summary</div>
             <div className="font-semibold ml-2 text-gray-500 border-b border-gray-500">Services</div>
@@ -87,10 +94,9 @@ export default function Checkout() {
             <CheckoutForm  clientSecret={clientSecret} />
           </Elements>
          )}
-         
-        
+        </div> 
+        </div>
       </div>
-     
     </div>
   );
   
