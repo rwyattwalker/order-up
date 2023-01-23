@@ -61,7 +61,7 @@ export default function Checkout() {
           <Navbar hamburger={true} dark/>
       </div>
     <div className="flex min-w-[100vw] min-h-[100vh] bg-[#e1e1e1]">
-      <div className="flex flex-col mt-[70px] md:my-20 mx-auto md:w-[800px] lg:w-[1000px] xl:w-[1200px] gap-2">
+      <div className="flex flex-col mt-[70px] md:my-20 mx-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
       
       <div className='hidden md:inline'>
           <Navbar hamburger={false} dark shoppingCart/>
