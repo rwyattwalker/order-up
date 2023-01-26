@@ -134,9 +134,9 @@ export default function Home() {
      </section>
       <section className='h-fit bg-[#E8E8E8]  flex justify-center'>
         <div className=' bg-[#323732] w-[95%] sm:w-[80%] lg:w-[60%] h-44 flex flex-col sm:flex-row justify-between rounded-full my-5'>
-         <h1 className='my-auto text-white text-5xl font-semibold mx-auto sm:ml-10 sm:mr-0'>Questions?</h1>
+         <h1 className='my-auto text-white text-5xl font-semibold mx-auto sm:ml-10 sm:mr-0'>How&apos;s it work?</h1>
          <Link href={'/contact'} className='my-auto'>
-            <h1 className='my-auto text-white text-4xl font-semibold mx-auto sm:mr-10 sm:ml-0 bg-[#97BBAF] py-4 px-5 w-fit rounded-full'>Contact Us</h1>
+            <h1 className='my-auto text-white text-4xl font-semibold mx-auto sm:mr-10 sm:ml-0 bg-[#97BBAF] py-4 px-5 w-fit rounded-full'>View Our Process</h1>
          </Link>
         </div>
       </section>

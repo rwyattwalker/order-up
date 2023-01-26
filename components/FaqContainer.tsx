@@ -14,7 +14,7 @@ type Props = {
 function FaqContainer({title, items}:Props){
   return (
     <div className='mt-10'>
-      <h2 className="text-5xl font-semibold mb-4 text-left">{title}</h2>
+      <h2 className="text-4xl font-semibold mb-4 text-left">{title}</h2>
       {items.map((e, i)=>{
           return(
             <FaqItem key={i} question={`${e.question}`} answer={`${e.answer}`} />

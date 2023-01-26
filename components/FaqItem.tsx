@@ -9,11 +9,11 @@ const FaqItem = ({ question, answer }:Props) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg p-4 mb-4">
-      <h2 className="text-lg font-medium mb-2 cursor-pointer" onClick={() => setIsVisible(!isVisible)}>
-        {question}
+    <div className=" p-4 my-1 border-b border-gray-500">
+      <h2 className="text-xl text-green font-bold cursor-pointer" onClick={() => setIsVisible(!isVisible)}>
+        {!isVisible ? `+ ` : `- ` }{question}
       </h2>
-      {isVisible && <p className="text-gray-700">{answer}</p>}
+      {isVisible && <p className="text-gray-500 font-semibold">{answer}</p>}
     </div>
   );
 };
