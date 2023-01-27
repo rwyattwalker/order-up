@@ -2,6 +2,7 @@ import React from 'react'
 import {ImCross} from 'react-icons/im'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import Link from 'next/link'
+import Image from 'next/image'
 
 
 
@@ -32,8 +33,8 @@ function Cart() {
         })
       }
      
-      <Link className={`mt-auto py-2 w-full ${cartItems.length == 0 ? 'bg-gray-400 pointer-events-none' : 'bg-[#EB9B2F]'}  rounded text-white font-semibold text-center text-lg`} href={'/checkout'}>
-        Proceed to Checkout
+      <Link className={`mt-auto py-2 w-full flex justify-center ${cartItems.length == 0 ? 'bg-gray-400 pointer-events-none' : 'bg-black'}  rounded text-white font-semibold text-center text-lg`} href={'/checkout'}>
+        Proceed to Checkout&nbsp;<Image src={'/hamburger-white.png'} alt="Order Up Logo" width={30} height={25} />
       </Link>
     </div>
   )
