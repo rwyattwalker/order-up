@@ -23,38 +23,29 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       
       </Head>
-      <main className="h-[100vh] flex justify-center custom-bg">
-        <div className='xl:my-24 2xl:mx-[20rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col'>
-          <div className='hidden sm:inline'>
-            <ClientOnly>
-              <Navbar hamburger={false} home getStarted />
-            </ClientOnly>
-          </div>
-          <div className='sm:hidden'>
-            <ClientOnly>
-              <Navbar hamburger={true} home/>
-            </ClientOnly>
-          </div>
-          <div className='flex flex-col h-full justify-center pointer-events-none '>
-            <div className='flex flex-col gap-3 md:flex-col lg:my-auto main-title justify-center'>
-              <div className='text-center mt-20'>ORDER UP</div>
-              <div className='text-xl mx-4 font-[500] mb-10 text-center'>Digital Solutions for Your Food Truck</div>
+      <main className="h-[100vh] flex bg-[#CBD5E1]">
+        <div className='xl:my-24 2xl:mx-[22rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col w-full'>
+          <div className='flex h-full justify-center pointer-events-none '>
+            <div className='flex flex-col gap-3 md:flex-col lg:my-auto justify-center'>
+              {/* <div className='text-center mt-20 text-black text-8xl font-bold whitespace-nowrap'>ORDER UP!</div> */}
+              <div className='text-5xl mx-4 mb-10 font-bold text-center text-black'>Digital Solutions for Your Food Truck</div>
+              <Link className='mx-auto' href={'/pricing'}><button className='py-2 px-4 bg-orange-500 rounded-full text-white font-semibold'>Get Started</button></Link>
             </div>
             
-            <div className="md:my-auto w-full mx-auto">
+            <div className="md:my-auto w-full mx-auto relative h-[50vh]">
                 <Image
                 className="ml-auto"
-                src="/foodtruck.png"
+                src="/foodtruck-graphic.png"
                 alt="Cute Robot"
-                width={700}
-                height={800}
+                fill
+                style={{objectFit:"contain"}}
                 priority
               />
             </div> 
-          </div> 
+            </div>
         </div>
       </main>
-      <section className='min-h-[400px] sm:min-h-[70vh] -mt-[250px] sm:-mt-46 pb-10 h-fit flex flex-col bg-[#5C4934]'  id="services">
+      <section className='min-h-[400px] sm:min-h-[70vh] pb-10 h-fit flex flex-col bg-[#5C4934]'  id="services">
        
         <div className='h-fit mx-auto mt-40 md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
         {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>

@@ -6,6 +6,7 @@ import { ShoppingCartProvider } from '../context/ShoppingCartContext'
 export default function App({ Component, pageProps }: AppProps) {
   return(
   <ShoppingCartProvider>
+    <Navbar hamburger ={false} getStarted dark/>
     <Component {...pageProps} />
   </ShoppingCartProvider>
   )
