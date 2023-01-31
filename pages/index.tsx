@@ -24,9 +24,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       
       </Head>
-      <main className="h-[90vh] flex bg-offwhite text-black justify-between">
+      <main className="h-[90vh] flex bg-offwhite text-black">
         <div className='xl:my-24 2xl:mx-[15rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col w-full'>
-          <div className='flex h-full justify-between pointer-events-none '>
+          <div className='flex h-full justify-around pointer-events-none '>
             <div className='flex flex-col gap-3 md:flex-col lg:my-auto justify-center max-w-md'>
               <div className='text-5xl mb-5 font-bold text-left'>Tech designed with food trucks in mind.</div>
               <p className='text-xl mb-2 font-bold text-left'>Whether it&apos;s mobile ordering, website design and development, or a completely custom solution. 
@@ -34,7 +34,7 @@ export default function Home() {
             <GetStarted />
             </div>
             
-            <div className="md:my-auto w-full mx-auto relative h-[60vh]">
+            <div className="md:my-auto w-[30vw] relative h-[50vh]">
                 <Image
                 className="ml-auto"
                 src="/foodtruck-3.png"
