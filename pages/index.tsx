@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import GetStarted from '../components/GetStarted'
 import { Inter } from '@next/font/google'
 import Navbar from '../components/navbar'
 import Service from '../components/service'
@@ -23,19 +24,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       
       </Head>
-      <main className="h-[100vh] flex bg-[#CBD5E1]">
-        <div className='xl:my-24 2xl:mx-[22rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col w-full'>
-          <div className='flex h-full justify-center pointer-events-none '>
-            <div className='flex flex-col gap-3 md:flex-col lg:my-auto justify-center'>
-              {/* <div className='text-center mt-20 text-black text-8xl font-bold whitespace-nowrap'>ORDER UP!</div> */}
-              <div className='text-5xl mx-4 mb-10 font-bold text-center text-black'>Digital Solutions for Your Food Truck</div>
-              <Link className='mx-auto' href={'/pricing'}><button className='py-2 px-4 bg-orange-500 rounded-full text-white font-semibold'>Get Started</button></Link>
+      <main className="h-[90vh] flex bg-offwhite text-black justify-between">
+        <div className='xl:my-24 2xl:mx-[15rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col w-full'>
+          <div className='flex h-full justify-between pointer-events-none '>
+            <div className='flex flex-col gap-3 md:flex-col lg:my-auto justify-center max-w-md'>
+              <div className='text-5xl mb-5 font-bold text-left'>Tech designed with food trucks in mind.</div>
+              <p className='text-xl mb-2 font-bold text-left'>Whether it&apos;s mobile ordering, website design and development, or a completely custom solution. 
+              OrderUp provides food trucks with the tools to provide a superior customer experience.</p>
+            <GetStarted />
             </div>
             
-            <div className="md:my-auto w-full mx-auto relative h-[50vh]">
+            <div className="md:my-auto w-full mx-auto relative h-[60vh]">
                 <Image
                 className="ml-auto"
-                src="/foodtruck-graphic.png"
+                src="/foodtruck-3.png"
                 alt="Cute Robot"
                 fill
                 style={{objectFit:"contain"}}
@@ -45,9 +47,9 @@ export default function Home() {
             </div>
         </div>
       </main>
-      <section className='min-h-[400px] sm:min-h-[70vh] pb-10 h-fit flex flex-col bg-[#5C4934]'  id="services">
+      <section className='min-h-[400px] h-fit flex flex-col bg-[#5C4934]'  id="services">
        
-        <div className='h-fit mx-auto mt-40 md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
+        <div className='h-fit mx-auto mt-0 md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
         {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>
           <h1 className="font-bold text-3xl underline">Services</h1>
           <p className='text-lg'>We offer a full range of services to take your website or app from an idea to fruition. Wether you need one or all of the services we provide, if it&apos;s on the web, we&apos;ve got you covered. 
@@ -61,12 +63,8 @@ export default function Home() {
               online ordering, and the latest technological features available, 
               we allow you to focus on what really matters, your customers.
             </p>
-            <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold text-center' href={'/pricing'}>
-             Get Started
-           </Link>
+            <GetStarted />
           </div>
-          {/* <Service name={"Design"} /> */}
-          {/* <Service name={"Develop"} /> */}
         <div className='md:basis-[100%] xl:hidden'></div>
           <Image src={"/3DTruck.png"} width={500} height={500} alt="Food Truck Graphic" className='hidden sm:inline'/>
         </div>
@@ -91,9 +89,7 @@ export default function Home() {
             Increase visibility and reach a larger audience by taking advantage of the latest search engine optimizations. 
             Integrate your website with social media and location tracking to connect with customers in real-time and drive sales. 
             </p>
-            <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold text-center' href={'/pricing'}>
-             Get Started
-           </Link>
+          <GetStarted /> 
           </div>
         </div>
       </section>
@@ -113,9 +109,7 @@ export default function Home() {
            We handle the ordering so you can focus on the customer. &quot;Order Up!&quot;
           
            </p>
-           <Link className='w-full sm:w-fit mr-auto py-3 sm:py-2 px-4 rounded-full bg-amber-500 my-3 font-semibold text-center' href={'/pricing'}>
-             Get Started
-           </Link>
+          <GetStarted /> 
          </div>
          {/* <Service name={"Design"} /> */}
          {/* <Service name={"Develop"} /> */}

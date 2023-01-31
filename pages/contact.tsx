@@ -43,14 +43,8 @@ function Contact() {
   }
   return (
     <>
-    <div className='md:hidden'>
-          <Navbar hamburger={true} dark/>
-    </div>
     <section className='min-h-[100vh] bg-[#E8E8E8]  flex justify-center'>
       <div className="flex flex-col mt-[70px] md:my-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
-      <div className='hidden md:inline'>
-          <Navbar hamburger={false} dark shoppingCart/>
-      </div>
         <div className=' bg-[#323732] w-full h-fit my-auto'>
           <form id="#form" className='flex flex-col m-12 gap-4 text-black' onSubmit={handleSubmit}>
             {loading &&

@@ -31,7 +31,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
   }
   return(<>
     {!hamburger &&
-      <div className='absolute top-0 w-[100vw] px-56 py-5 m font-bold text-lg text-white bg-offwhite flex justify-between z-[50000] pointer-events-auto'>
+      <div className='absolute top-0 w-[100vw] px-56 py-5 m font-bold text-lg text-white bg-white flex justify-between z-[50000] pointer-events-auto'>
         <Link className='hover:cursor-pointer my-auto flex' href={"/"}>
           <Image src={`${dark ? '/hamburger-black.png' : '/hamburger-white.png'}`} width={50} height={50} alt="logo" />
         </Link>
@@ -40,7 +40,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           <Link href={"/contact"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>Contact</Link>
           { getStarted &&
             <Link href={"/pricing"} >
-            <button className="bg-[#EB9B2F] text-white rounded-full font-bold py-2 px-4 cursor-pointer pointer-events-none">Get Started</button>
+            <button className="bg-orange-500 text-white rounded-full font-bold py-2 px-4 cursor-pointer pointer-events-none">Get Started</button>
           </Link>
           }
             { shoppingCart &&
