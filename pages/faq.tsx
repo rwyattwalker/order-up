@@ -10,7 +10,7 @@ function App() {
     <h1 className="text-5xl font-semibold mb-4 text-center">Frequently Asked Questions</h1>
     <div className='flex justify-center'>
       <p className="text-xl font-thin text-center my-auto">Don&apos;t see what your looking for?&nbsp;</p>
-      <Link href={'/contact'} className='py-2 px-4 bg-green rounded-full text-white font-semibold'>Contact Us</Link>
+      <Link href={'/contact'} className='py-2 px-4 bg-pastel-green rounded-full text-white font-semibold'>Contact Us</Link>
     </div>
       <div className="w-fit md:w-[750px] mx-auto my-auto">
         <FaqContainer 

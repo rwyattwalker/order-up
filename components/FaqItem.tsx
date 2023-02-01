@@ -10,7 +10,7 @@ const FaqItem = ({ question, answer }:Props) => {
 
   return (
     <div className=" p-4 my-1 border-b border-gray-500">
-      <h2 className="text-xl text-green font-bold cursor-pointer" onClick={() => setIsVisible(!isVisible)}>
+      <h2 className="text-xl text-pastel-green font-bold cursor-pointer" onClick={() => setIsVisible(!isVisible)}>
         {!isVisible ? `+ ` : `- ` }{question}
       </h2>
       {isVisible && <p className="text-gray-500 font-semibold">{answer}</p>}
