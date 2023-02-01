@@ -66,9 +66,9 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
       </div>
     }
     {hamburger &&
-      <div className='w-full  font-bold text-lg text-white bg-[#97BBAF] flex justify-between fixed z-[50000]'>
+      <div className='w-full  font-bold text-lg text-black bg-white flex justify-between fixed z-[50000]'>
         <Link className='hover:cursor-pointer my-auto mx-2 flex' href={"/"}>
-          <Image src="/hamburger-white.png" width={50} height={50} alt="logo" />
+          <Image src="/hamburger-black.png" width={50} height={50} alt="logo" />
           <div className='my-auto text-xl font-bold'>| ORDER UP</div>
         </Link> 
         <div className='flex'>
@@ -90,15 +90,19 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
             <Cart />
           </div>
           <div className='flex separator h-[80%] my-auto'></div>
-           <GiHamburgerMenu className={`text-3xl z-50 my-5 mx-3 ${open ? 'text-white': 'text-white'}`} onClick={handleToggle}/> 
+           <GiHamburgerMenu className={`text-3xl z-50 my-5 mx-3 ${open ? 'text-black': 'text-black'}`} onClick={handleToggle}/> 
         </div>
           
         
         {open &&
-          <div className='flex flex-col z-20 absolute top-0 w-full h-fit bg-[#97BBAF]'>
-            <Link href={"/contact"} className="my-auto text-white font-bold py-2 px-4 w-fit">Contact</Link>
-            <Link href={"/faq"} className="my-auto text-white font-bold py-2 px-4 w-fit">FAQ</Link>
-            <Link href={"/pricing"} className=" text-white font-bold py-2 px-4">Get Started</Link>
+          <div className='flex flex-col z-20 absolute top-0 w-full h-fit bg-white text-black'>
+            <Link className='hover:cursor-pointer my-auto mx-2 mt-3 flex' href={"/"}>
+              <Image src="/hamburger-black.png" width={50} height={50} alt="logo" />
+              <div className='my-auto text-xl font-bold'>| ORDER UP</div>
+            </Link> 
+            <Link href={"/contact"} className="my-auto  font-bold py-2 px-4 w-fit">Contact</Link>
+            <Link href={"/faq"} className="my-auto  font-bold py-2 px-4 w-fit">FAQ</Link>
+            <Link href={"/pricing"} className="  font-bold py-2 px-4">Get Started</Link>
           
           </div>
         }
