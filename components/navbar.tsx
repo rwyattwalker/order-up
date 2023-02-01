@@ -31,9 +31,10 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
   }
   return(<>
     {!hamburger &&
-      <div className='absolute top-0 w-[100vw] px-56 py-5 m font-bold text-lg text-white bg-white flex justify-between z-[50000] pointer-events-auto'>
+      <div className='absolute top-0 w-[100vw] px-56 py-5 m font-bold text-lg text-black bg-white flex justify-between z-[50000] pointer-events-auto'>
         <Link className='hover:cursor-pointer my-auto flex' href={"/"}>
           <Image src={`${dark ? '/hamburger-black.png' : '/hamburger-white.png'}`} width={50} height={50} alt="logo" />
+          <div className='my-auto text-xl font-bold'>| ORDER UP</div>
         </Link>
         <div className='flex gap-8'>
           <Link href={"/faq"} className={`${dark && 'text-black'} my-auto cursor-pointer scroll-smooth`}>FAQ</Link>
