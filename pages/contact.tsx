@@ -43,9 +43,9 @@ function Contact() {
   }
   return (
     <>
-    <section className='min-h-[100vh] bg-[#E8E8E8]  flex justify-center'>
-      <div className="flex flex-col my-auto md:my-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
-        <div className=' bg-[#323732] w-full h-fit my-auto'>
+    <section className=' min-h-[100vh] sm:min-h-[95vh] bg-[#E8E8E8]  flex justify-center pt-[40px] sm:mt-[42px]'>
+      <div className="flex flex-col md:my-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
+        <div className='min-h-[100vh] sm:min-h-fit bg-[#323732] w-full h-fit my-auto'>
           <form id="#form" className='flex flex-col m-12 gap-4 text-black' onSubmit={handleSubmit}>
             {loading &&
             <div className='h-[391px] flex'>
