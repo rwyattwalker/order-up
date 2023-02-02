@@ -5,10 +5,10 @@ type props = {
   id:number,
   plan: string,
   headerText: string,
-  price: string,
+  price: number,
   bullets: string[],
   classes?: string,
-  fee: string,
+  fee: number,
   text: string,
 }
 

@@ -6,7 +6,7 @@ type Props = {
 
 type ShoppingCartContext = {
   getItemQuantity:(id:number)=>number
-  increaseCartQuantity:(id:number, name:string, price:string, fee:string)=>void
+  increaseCartQuantity:(id:number, name:string, price:number, fee:number)=>void
   decreaseCartQuantity:(id:number)=>void
   removeFromCart:(id:number)=>void
   openCart:() => void
@@ -19,8 +19,8 @@ type CartItem ={
   id:number
   quantity: number
   name:string
-  price: string
-  fee: string
+  price: number
+  fee: number
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
@@ -39,7 +39,7 @@ export function ShoppingCartProvider({children}:Props){
   function getItemQuantity(id:number){
     return cartItems.find(item => item.id === id)?.quantity || 0
   }
-  function increaseCartQuantity(id:number, name:string, fee:string, price:string){
+  function increaseCartQuantity(id:number, name:string, fee:number, price:number){
     setCartItems(currItems => {
       if(!localStorage.getItem('seenCart')){
         openCart()

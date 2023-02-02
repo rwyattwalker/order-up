@@ -5,15 +5,15 @@ type props = {
   id: number,
   plan: string,
   headerText: string,
-  price: string,
+  price: number,
   bullets: string[],
   classes?: string,
-  fee: string,
+  fee: number,
   text: string,
 }
 
 function PricingContainer({plan:name, headerText, price, bullets, classes, fee, text, id}:props) {
-  const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingCart()
+  const {increaseCartQuantity} = useShoppingCart()
   return (
     <div key={id} className={`${classes && classes} flex flex-col my-auto bg-white rounded-md drop-shadow-lg h-[425px] w-[350px] px-2 py-2 text-center border-[#F5F5F5] border-2`}>
       <h1 className='font-bold text-2xl mt-12 mb-3'>{name}</h1>
