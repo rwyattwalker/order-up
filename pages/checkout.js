@@ -57,15 +57,8 @@ export default function Checkout() {
   };
 
   return (<>
-    <div className='md:hidden'>
-          <Navbar hamburger={true} dark/>
-      </div>
     <div className="flex min-w-[100vw] min-h-[100vh] bg-[#e1e1e1]">
       <div className="flex flex-col mt-[70px] md:my-auto mx-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
-      
-      <div className='hidden md:inline'>
-          <Navbar hamburger={false} dark shoppingCart/>
-      </div>
       <div className="flex justify-center lg:justify-between w-full h-full gap-10">
         <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%]">
           <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
