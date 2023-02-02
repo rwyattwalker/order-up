@@ -67,9 +67,9 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
       </div>
     }
     {hamburger &&
-      <div className='w-full  font-bold text-lg text-black bg-white flex flex-col fixed z-[50000]' onClick={()=>setOpen(false)}>
+      <div className='w-full  font-bold text-lg text-black bg-white flex flex-col fixed z-[50000]' >
         <div className='flex w-full justify-between'>
-          <Link className='hover:cursor-pointer my-auto mx-2 flex' href={"/"}>
+          <Link className='hover:cursor-pointer my-auto mx-2 flex' href={"/"} onClick={()=>setOpen(false)}>
             <Image src="/hamburger-black.png" width={50} height={50} alt="logo" />
             <div className='my-auto text-xl font-bold'>| ORDER UP</div>
           </Link> 
@@ -100,7 +100,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           
         
         {open &&
-          <div className='flex flex-col z-20 top-0 w-full h-fit bg-white text-black'>
+          <div className='flex flex-col z-20 top-0 w-full h-fit bg-white text-black' onClick={()=>setOpen(false)}>
             <Link href={"/contact"} className="my-auto  font-bold py-2 px-4 w-fit">Contact</Link>
             <Link href={"/faq"} className="my-auto  font-bold py-2 px-4 w-fit">FAQ</Link>
             <Link href={"/pricing"} className="  font-bold py-2 px-4">Get Started</Link>
