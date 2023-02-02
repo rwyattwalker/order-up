@@ -6,7 +6,7 @@ import FaqContainer from '../components/FaqContainer';
 function App() {
   return (
     <Container dark getStarted>
-    <div className="bg-gray-200 px-8 pb-8 text-left flex flex-col"> 
+    <div className="bg-gray-200 px-8 pb-8 text-left flex flex-col mt-10 sm:mt-0"> 
     <h1 className="text-5xl font-semibold mb-4 text-center">Frequently Asked Questions</h1>
     <div className='flex justify-center flex-col sm:flex-row text-center'>
       <p className="text-xl font-thin text-center my-auto">Don&apos;t see what your looking for?&nbsp;</p>
