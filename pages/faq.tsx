@@ -6,11 +6,11 @@ import FaqContainer from '../components/FaqContainer';
 function App() {
   return (
     <Container dark getStarted>
-    <div className="bg-gray-200 p-8 text-left flex flex-col"> 
+    <div className="bg-gray-200 px-8 pb-8 text-left flex flex-col"> 
     <h1 className="text-5xl font-semibold mb-4 text-center">Frequently Asked Questions</h1>
-    <div className='flex justify-center'>
+    <div className='flex justify-center flex-col sm:flex-row text-center'>
       <p className="text-xl font-thin text-center my-auto">Don&apos;t see what your looking for?&nbsp;</p>
-      <Link href={'/contact'} className='py-2 px-4 bg-pastel-green rounded-full text-white font-semibold'>Contact Us</Link>
+      <Link href={'/contact'} className='py-2 px-4 bg-pastel-green rounded-full text-white font-semibold text-center mt-4 sm:mt-0 sm:w-fit max-w-md mx-auto sm:mx-0'>Contact Us</Link>
     </div>
       <div className="w-fit md:w-[750px] mx-auto my-auto">
         <FaqContainer 

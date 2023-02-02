@@ -31,7 +31,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
   }
   return(<>
     {!hamburger &&
-      <div className='absolute top-0 w-[100vw] px-56 py-5 m font-bold text-lg text-black bg-white flex justify-between z-[50000] pointer-events-auto'>
+      <div className='absolute top-0 w-[100vw] px-56 sm:px-20 py-5 m font-bold text-lg text-black bg-white flex justify-between z-[50000] pointer-events-auto'>
         <Link className='hover:cursor-pointer my-auto flex' href={"/"}>
           <Image src={`${dark ? '/hamburger-black.png' : '/hamburger-white.png'}`} width={50} height={50} alt="logo" />
           <div className='my-auto text-xl font-bold'>| ORDER UP</div>
@@ -45,7 +45,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
           </Link>
           }
             { shoppingCart &&
-              <div className='text-black text-2xl flex relative' >
+              <div className='text-black text-2xl flex relative border-l pl-4' >
                 <BsCart4 className='my-auto relative cursor-pointer' onClick={()=>visible ? closeCart() : openCart()}/>
                 <div className={`${cartItems.length == 0 && 'hidden'} rounded-full bg-blue-500 flex justify-center align-middle text-xs`}
                     style={{

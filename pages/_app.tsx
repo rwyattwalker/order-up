@@ -7,10 +7,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return(
   <ShoppingCartProvider>
     <div className='hidden sm:inline'>
-      <Navbar hamburger={false} getStarted dark/>
+      <Navbar hamburger={false} getStarted dark shoppingCart/>
     </div>
     <div className='sm:hidden'>
-      <Navbar hamburger={true} getStarted dark/>
+      <Navbar hamburger={true} getStarted dark />
     </div>
     <Component {...pageProps} />
   </ShoppingCartProvider>

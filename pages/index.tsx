@@ -76,16 +76,16 @@ export default function Home() {
           {/* <Image src={"/3DTruck.png"} width={500} height={500} alt="Food Truck Graphic" className='hidden sm:inline'/> */}
         </div>
       </section>
-      <section className='min-h-[60vh] pb-10 h-fit flex flex-col bg-[#323732]'  id="services">
+      <section className='min-h-[60vh] pb-10 h-fit flex flex-col bg-[#F6DEAF]'  id="services">
        
-        <div className=' h-fit mx-auto md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-white'> 
+        <div className=' h-fit mx-auto md:mx-20 lg:mx-44 flex flex-col flex-wrap xl:flex-nowrap md:flex-row lg:gap-4 justify-center text-black my-auto'> 
         {/* <div className='w-80 flex flex-col mt-16 text-center rounded-md mx-auto lg:mx-0'>
           <h1 className="font-bold text-3xl underline">Services</h1>
           <p className='text-lg'>We offer a full range of services to take your website or app from an idea to fruition. Wether you need one or all of the services we provide, if it&apos;s on the web, we&apos;ve got you covered. 
           </p>
         </div> */}
         <div className='md:basis-[100%] xl:hidden'></div>
-        <Image src={"/website.png"} width={500} height={500} alt="Food Truck Graphic"/>
+        <Image src={"/food-web.png"} width={500} height={500} alt="Food Truck Graphic"/>
      
           {/* <Service name={"Design"} /> */}
           {/* <Service name={"Develop"} /> */}
@@ -121,7 +121,7 @@ export default function Home() {
          {/* <Service name={"Design"} /> */}
          {/* <Service name={"Develop"} /> */}
        <div className='md:basis-[100%] xl:hidden'></div>
-         <Image src={"/ui-menus.png"} width={500} height={500} alt="Food Truck Graphic"/>
+         <Image src={"/mobile.png"} width={500} height={500} alt="Food Truck Graphic"/>
        </div>
      </section>
       <section className='h-fit bg-[#E8E8E8]  flex justify-center'>
