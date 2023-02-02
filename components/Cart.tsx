@@ -10,7 +10,7 @@ function Cart() {
   const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingCart()
   const {cartItems, visible, closeCart} = useShoppingCart()
   return (
-    <div className={`${visible ? "" : "hidden"} p-4 z-[9999999999999999999] text-black right-0  top-[70px] sm:top-[70px] sm:right-0 w-[90vw] sm:w-[500px] absolute bg-white rounded border-l-gray-300 flex flex-col`}>
+    <div className={`${visible ? "" : "hidden"} p-4 z-[9999999999999999999] text-black right-1  top-[75px] sm:top-[70px] sm:right-0 w-[90vw] sm:w-[500px] absolute bg-white rounded border-l-gray-300 flex flex-col`}>
       <h1 className='font-bold text-2xl text-center'>My Order</h1>
       {cartItems.length == 0 && 
         <h2 className='font-[500] text-lg text-center mb-1'>Your have no services selected</h2>
