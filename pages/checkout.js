@@ -79,7 +79,7 @@ export default function Checkout() {
                 )})}
               <div className="flex flex-col w-full justify-between mt-3">
                 <div className="flex w-full justify-between text-base">
-                  <div className=" text-gray-500 font-bold">Due monthly after development</div><div className="font-semibold text-gray-500 text-base">${calculateMonthly(cartItems)}</div>
+                  <div className=" text-gray-500 font-bold flex flex-col sm:flex-row">Due monthly&nbsp;<div>after development</div></div><div className="font-semibold text-gray-500 text-base">${calculateMonthly(cartItems)}</div>
                 </div>
                 <div className="flex w-full justify-between">
                    <div className="text-black font-bold">Total Due Today</div><div className="font-semibold text-black text-lg">${calculateOrderAmount(cartItems)}</div>
