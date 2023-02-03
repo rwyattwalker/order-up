@@ -34,8 +34,8 @@ function Cart() {
         })
       }
      
-      <Link className={`mt-auto py-2 w-full flex justify-center ${cartItems.length == 0 ? 'bg-gray-400 pointer-events-none' : 'bg-black'}  rounded text-white font-semibold text-center text-lg`} href={'/checkout'}>
-        <button className='flex' onClick={closeCart}>Checkout&nbsp;<Image src={'/hamburger-white.png'} alt="Order Up Logo" width={30} height={25} /></button>
+      <Link onClick={closeCart}className={`mt-auto py-2 w-full flex justify-center ${cartItems.length == 0 ? 'bg-gray-400 pointer-events-none' : 'bg-black'}  rounded text-white font-semibold text-center text-lg`} href={'/checkout'}>
+        <button className='flex'>Checkout&nbsp;<Image src={'/hamburger-white.png'} alt="Order Up Logo" width={30} height={25} /></button>
       </Link>
     </div>
   )
