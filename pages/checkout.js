@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -5,6 +6,7 @@ import {useShoppingCart} from '../context/ShoppingCartContext.tsx'
 import CheckoutItem from '../components/CheckoutItem'
 import CheckoutForm from "../components/CheckoutForm.jsx";
 import Image from "next/image";
+import ClientOnly from '../components/ClientOnly.tsx'
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -15,6 +17,7 @@ export default function Checkout() {
   const {cartItems} = useShoppingCart();
   const [clientSecret, setClientSecret] = React.useState("");
   React.useEffect(() => {
+    console.log('running')
     // Create PaymentIntent as soon as the page loads
     fetch("/api/create-payment-intent", {
       method: "POST",
@@ -61,7 +64,7 @@ export default function Checkout() {
     appearance,
   };
 
-  return (<>
+  return (<ClientOnly>
     <div className="flex min-w-[100vw] min-h-[100vh] sm:min-h-[93vh] bg-[#e1e1e1] justify-center sm:mt-[70px]">
       <div className="flex flex-col mt-[80px] md:my-auto mx-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
       <div className="flex justify-center lg:justify-between w-full h-fit gap-10">
@@ -86,11 +89,7 @@ export default function Checkout() {
                 </div>
                  
               </div>
-              {/* <label className="text-xs">
-                <input type="checkbox" />
-                I understand that the total due today is the <span className="font-bold">SET UP FEE</span> for 
-                my services only and that I must sign up for the necessary subscription(s) in order for my website or service to be deployed
-              </label> */}
+
             </div>
           </div>
           <div className="separator flex flex-col w-full h-[1px] my-5"></div>
@@ -102,7 +101,7 @@ export default function Checkout() {
         </div> 
         </div>
       </div>
-    </div></>
+    </div></ClientOnly>
   );
   
 }

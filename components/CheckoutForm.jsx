@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import Link from "next/link";
 import {
   PaymentElement,
-  LinkAuthenticationElement,
-  PaymentRequestButtonElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
@@ -22,57 +20,6 @@ export default function CheckoutForm({clientSecret}) {
     setChecked(event.target.checked);
   }
 
-  React.useEffect(()=>{
-    if(!stripe || !elements){
-      return;
-    }
-      const pr = stripe.paymentRequest({
-        country: 'US',
-        currency: 'usd',
-        total: {
-          label: 'Hello',
-          amount: 100,
-        },
-        requestPayerName: true,
-        requestPayerEmail: true,
-      });
-
-      // Check the availability of the Payment Request API.
-      pr.canMakePayment().then(result => {
-        if (result) {
-          setPaymentRequest(pr);
-        }
-      });
-      pr.on('paymentmethod', async (e) => {
-        //create payment intent on server
-        // const {clientSecret} = await fetch("/api/create-payment-intent", {
-        //   method: 'POST',
-        //   headers:{
-        //     'Content-Type':'application/json',
-        //   },
-        //   body:JSON.stringify({
-        //     paymentMethodType: 'card',
-        //     currency: 'usd',
-        //   }),
-        // }).then(r => r.json());
-        //confirm the payment intent on client
-        const {error, paymentIntent} = await stripe.confirmCardPayment(
-          clientSecret, {
-            payment_method: e.paymentMethod.id,
-          },{
-            handleActions: false,
-          }
-        )
-        if(error){
-          e.complete('fail');
-          return;
-        }
-        e.complete('success');
-        if(paymentIntent.status == 'requires_action'){
-          stripe.confirmCardPayment(clientSecret);
-        }
-      });
-  }, [stripe, elements, clientSecret]);
 
   React.useEffect(() => {
     if (!stripe) {
@@ -146,15 +93,14 @@ export default function CheckoutForm({clientSecret}) {
 
   return (
     <> 
-      {/* {paymentRequest &&
-        <PaymentRequestButtonElement options={{paymentRequest}} />
-      } */}
     <form id="payment-form" onSubmit={handleSubmit} className="mt-3">
-     
-      {/* <LinkAuthenticationElement
-        id="link-authentication-element"
+       <input
+        id="email"
+        type="text"
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
-      /> */}
+        placeholder="Enter email address"
+      />
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       <div className="mt-2">     
       <label> 
