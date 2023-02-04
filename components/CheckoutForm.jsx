@@ -141,7 +141,6 @@ export default function CheckoutForm({clientSecret}) {
 
   const paymentElementOptions = {
     layout: "tabs",
-    paymentMethodOrder:['card']
   };
 
 
