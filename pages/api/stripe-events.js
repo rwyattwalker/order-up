@@ -4,7 +4,7 @@ import Stripe from "stripe";
 const stripe = new Stripe("sk_test_51MSWxUFWbP8S10HmW4UE1p1kLW0ENFES63lJzm5tHQrBMloejWuL2N21GqMXaundLLOqQ68GmF3WQwxVlwkVEvjK005df3CpUQ", {
   apiVersion: "2022-11-15",
 });
-const webhookSecret = "whsec_DaACbTV2YOJdH282s3J2DgdkRv0WSxFy";
+const webhookSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
