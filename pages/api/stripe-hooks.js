@@ -4,7 +4,7 @@ import {buffer} from 'micro'
 
 export const config = { api: {bodyParser: false}};
 
-const endpointSecret = "whsec_1nWzr8V9j65UiqqPiU2F8bWGMwXMA4yK";
+const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
 
 const handler = async (req, res) => {
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY)
