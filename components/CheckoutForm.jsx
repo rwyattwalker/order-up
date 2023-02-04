@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import Link from "next/link";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -15,8 +16,11 @@ export default function CheckoutForm({clientSecret}) {
   const [message, setMessage] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [paymentRequest, setPaymentRequest] = React.useState(null);
+  const [checked, setChecked] = useState(false);
 
-
+  const handleCheck = (event) => {
+    setChecked(event.target.checked);
+  }
 
   React.useEffect(()=>{
     if(!stripe || !elements){
@@ -137,6 +141,7 @@ export default function CheckoutForm({clientSecret}) {
 
   const paymentElementOptions = {
     layout: "tabs",
+    paymentMethodOrder:['card']
   };
 
 
@@ -154,12 +159,12 @@ export default function CheckoutForm({clientSecret}) {
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       <div className="mt-2">     
       <label> 
-        <input id="tos" type="checkbox" className="m-1 text-center" name="terms-and-conditions" />
-        I Agree to the <span className="text-blue-500">Terms and Conditions</span>
+        <input id="tos" type="checkbox" className="m-1 text-center" name="terms-and-conditions" onChange={handleCheck}/>
+        I have read and agree to the <Link target={"_blank"} href={'/terms'}><span className="text-blue-500">Terms of Service</span></Link>
       </label>
    
       </div>
-      <button disabled={isLoading || !stripe || !elements} id="submit" className="w-full py-2 bg-blue-500 rounded text-white font-semibold">
+      <button disabled={isLoading || !stripe || !elements || !checked} id="submit" className="w-full py-2 bg-blue-500 rounded text-white font-semibold">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Buy Now"}
         </span>
