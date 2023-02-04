@@ -1,22 +1,30 @@
-const stripe = require('stripe');
-const axios = require('axios');
+import { buffer } from "micro";
+import Stripe from "stripe";
 
-// This is your Stripe CLI webhook secret for testing your endpoint locally.
-const endpointSecret = "whsec_0958e48b78ed8166899a549b993a4279e1812776dcb59e55661293c0f838c17b";
+const stripe = new Stripe("sk_test_51MSWxUFWbP8S10HmW4UE1p1kLW0ENFES63lJzm5tHQrBMloejWuL2N21GqMXaundLLOqQ68GmF3WQwxVlwkVEvjK005df3CpUQ", {
+  apiVersion: "2020-08-27",
+});
+const webhookSecret = "whsec_DaACbTV2YOJdH282s3J2DgdkRv0WSxFy";
 
+const handler = async (req, res) => {
+  if (req.method === "POST") {
+    const buf = await buffer(req);
+    const sig = req.headers["stripe-signature"];
 
-export default async function handler(req, res) {
-  const sig = req.headers['stripe-signature']
-  let event;
-  try {
-    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-  } catch (err) {
-    response.status(400).send(`Webhook Error: ${err.message}`);
-    return;
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
+    } catch (err) {
+      res.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+    console.log(event, "Event")
+    res.json({ received: true });
+  } else {
+    res.setHeader("Allow", "POST");
+    res.status(405).end("Method Not Allowed");
   }
-   // Handle the event
-   console.log(`Unhandled event type ${event.type}`);
-
-   // Return a 200 response to acknowledge receipt of the event
-   res.send();
 };
+
+export default handler;
