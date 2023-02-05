@@ -14,6 +14,7 @@ export default function CheckoutForm({clientSecret, customer}) {
   const [message, setMessage] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [checked, setChecked] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
 
   const handleCheck = (event) => {
     setChecked(event.target.checked);
@@ -59,8 +60,15 @@ export default function CheckoutForm({clientSecret, customer}) {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
     setIsLoading(true);
+
+    //check email
+    if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+      setInvalidEmail(true)
+      setIsLoading(false)
+      return
+    }
+    //Update Customer
     await fetch('/api/update-customer', {
       method: 'POST',
       headers: { "Content-Type": "application/json"
@@ -100,19 +108,23 @@ export default function CheckoutForm({clientSecret, customer}) {
   return (
     <> 
     <form id="payment-form" onSubmit={handleSubmit} className="mt-3">
+        <label for="name" className="text-sm">Name</label>
         <input
             id="name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Name on Card"
+            placeholder="Name"
+            className={`bg-[#F1F1F1] h-12 rounded-xl w-full mb-2 p-[16px] placeholder-black placeholder:font-light`}
           />
+       <label for="email" className="text-sm">Email</label>
        <input
         id="email"
         type="text"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter email address"
+        placeholder="Email"
+        className={`bg-[#F1F1F1] h-12 rounded-xl w-full mb-3 p-[16px] placeholder-black placeholder:font-light ${invalidEmail && 'border border-red-400'}`}
       />
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       <div className="mt-2">     

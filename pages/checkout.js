@@ -7,6 +7,7 @@ import CheckoutItem from '../components/CheckoutItem'
 import CheckoutForm from "../components/CheckoutForm.jsx";
 import Image from "next/image";
 import ClientOnly from '../components/ClientOnly.tsx'
+import { CircularProgress } from "@mui/material";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -73,7 +74,7 @@ export default function Checkout() {
           <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
         </div>
           <div className="h-fit my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 rounded">
-           <div className="flex flex-col mx-auto border border-gray-200 rounded w-full px-4 h-50 overflow-x-hidden overflow-y-scroll scrollbar-hide">
+           {/* <div className="flex flex-col mx-auto border border-gray-200 rounded w-full px-4 h-50 overflow-x-hidden overflow-y-scroll scrollbar-hide">
             <div className="flex flex-col h-fit mt-2">
               <div className="font-bold text-2xl">Order Summary</div>
               <div className="font-semibold ml-2 text-gray-500 border-b border-gray-500">Services</div>
@@ -92,8 +93,14 @@ export default function Checkout() {
               </div>
 
             </div>
+          </div> */}
+          {/* <div className="separator flex flex-col w-full h-[1px] my-5"></div> */}
+        {!clientSecret &&
+          <div className="mx-auto">
+            <CircularProgress />
           </div>
-          <div className="separator flex flex-col w-full h-[1px] my-5"></div>
+        }
+        
          {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm  clientSecret={paymentInt.clientSecret} customer={paymentInt.customer} />

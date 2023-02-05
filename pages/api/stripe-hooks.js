@@ -24,12 +24,6 @@ const handler = async (req, res) => {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
       console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
-      // Update Customer Info
-      console.log(paymentIntent.customer, "Customer")
-    //  await stripe.customers.update(
-    //     paymentIntent.customer,
-    //     {name: "Wyatt Walker", email:"rwyattwalker@gmail.com"}
-    //   );
       // Then define and call a method to handle the successful payment intent.
       // handlePaymentIntentSucceeded(paymentIntent);
       break;
