@@ -1,10 +1,19 @@
 import initStripe from 'stripe'
 import {buffer} from 'micro'
-//const stripe = require('stripe')('sk_test_51MSWxUFWbP8S10HmW4UE1p1kLW0ENFES63lJzm5tHQrBMloejWuL2N21GqMXaundLLOqQ68GmF3WQwxVlwkVEvjK005df3CpUQ');
-
+const nodemailer = require("nodemailer");
 export const config = { api: {bodyParser: false}};
 
-const endpointSecret = "whsec_T2AeB2iw5k69BwNRRt6FPrU0K8OrpPUd";
+const endpointSecret = "whsec_svvEvWWApNGkgcqKy3xtu3zggi0G6OkD";
+
+const transporter = nodemailer.createTransport({
+    host: 'smtp.zoho.com',
+    secure:true,
+    port:465,
+    auth: {
+        user:'wwalker@evolveweb.io',
+        pass:'Sey3qT6Jug4W',
+    },
+});
 
 const handler = async (req, res) => {
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY)
@@ -24,6 +33,21 @@ const handler = async (req, res) => {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
       console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+      const customer = await stripe.customers.retrieve(paymentIntent.customer);
+      console.log(customer, "THE CUSTOMER")
+      transporter.sendMail({
+        from: 'support@getorderup.com',
+        to: customer.email,
+        subject: 'Success!',
+        html:"<p>Testing<p>"
+       }, (err, info) => {
+        if(err){
+          console.log(err);
+        }else{
+          console.log('Sent', info.response)
+          res.status(200).json({success:true})
+        }
+      })
       // Then define and call a method to handle the successful payment intent.
       // handlePaymentIntentSucceeded(paymentIntent);
       break;

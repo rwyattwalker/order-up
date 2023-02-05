@@ -80,7 +80,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "https://getorderup.com",
+        return_url: "https://4081-2600-8804-400d-7500-00-2c96.ngrok.io/success",
         receipt_email: email,
       },
     });
