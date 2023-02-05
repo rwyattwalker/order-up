@@ -38,8 +38,10 @@ export default async function handler(req, res) {
     automatic_payment_methods: {
       enabled: false,
     },
+    description: JSON.stringify(items),
   });
   res.send({
   clientSecret: paymentIntent.client_secret,
+  customer: customer.id
   });
 };

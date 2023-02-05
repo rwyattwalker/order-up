@@ -4,7 +4,7 @@ import {buffer} from 'micro'
 
 export const config = { api: {bodyParser: false}};
 
-const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
+const endpointSecret = "whsec_T2AeB2iw5k69BwNRRt6FPrU0K8OrpPUd";
 
 const handler = async (req, res) => {
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY)
@@ -19,7 +19,29 @@ const handler = async (req, res) => {
     console.log(error);
     return res.status(400).send(`Webhook error: ${error.message}`)
   }
-
+   // Handle the event
+   switch (event.type) {
+    case 'payment_intent.succeeded':
+      const paymentIntent = event.data.object;
+      console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+      // Update Customer Info
+      console.log(paymentIntent.customer, "Customer")
+    //  await stripe.customers.update(
+    //     paymentIntent.customer,
+    //     {name: "Wyatt Walker", email:"rwyattwalker@gmail.com"}
+    //   );
+      // Then define and call a method to handle the successful payment intent.
+      // handlePaymentIntentSucceeded(paymentIntent);
+      break;
+    case 'payment_method.attached':
+      const paymentMethod = event.data.object;
+      // Then define and call a method to handle the successful attachment of a PaymentMethod.
+      // handlePaymentMethodAttached(paymentMethod);
+      break;
+    default:
+      // Unexpected event type
+    console.log(`Unhandled event type ${event.type}.`);
+  }
   console.log({event})
   res.send({received: true});
 }

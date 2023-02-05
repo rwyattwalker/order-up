@@ -15,7 +15,7 @@ const stripePromise = loadStripe("pk_test_51MSWxUFWbP8S10HmRdxmh5X16w7A9Cq53NwDL
 
 export default function Checkout() {
   const {cartItems} = useShoppingCart();
-  const [clientSecret, setClientSecret] = React.useState("");
+  const [paymentInt, setPaymentInt] = React.useState(null);
   React.useEffect(() => {
     console.log('running')
     // Create PaymentIntent as soon as the page loads
@@ -26,8 +26,8 @@ export default function Checkout() {
       body: JSON.stringify({ items: cartItems }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, [cartItems]);
+      .then((data) => setPaymentInt(data))
+  }, []);
   const calculateOrderAmount = (items) => {
     let total = 0;
     items.map((e)=> {
@@ -59,6 +59,7 @@ export default function Checkout() {
   const appearance = {
     theme: 'flat',
   };
+  const clientSecret = paymentInt?.clientSecret
   const options = {
     clientSecret,
     appearance,
@@ -95,7 +96,7 @@ export default function Checkout() {
           <div className="separator flex flex-col w-full h-[1px] my-5"></div>
          {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm  clientSecret={clientSecret} />
+            <CheckoutForm  clientSecret={paymentInt.clientSecret} customer={paymentInt.customer} />
           </Elements>
          )}
         </div> 

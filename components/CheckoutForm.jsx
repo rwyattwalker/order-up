@@ -6,14 +6,13 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm({clientSecret}) {
+export default function CheckoutForm({clientSecret, customer}) {
   const stripe = useStripe();
   const elements = useElements();
-
+  const [name, setName] = React.useState("")
   const [email, setEmail] = React.useState('');
   const [message, setMessage] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [paymentRequest, setPaymentRequest] = React.useState(null);
   const [checked, setChecked] = useState(false);
 
   const handleCheck = (event) => {
@@ -62,12 +61,19 @@ export default function CheckoutForm({clientSecret}) {
     }
 
     setIsLoading(true);
-
+    await fetch('/api/update-customer', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"
+    },
+      body: JSON.stringify({customerId: customer, email: email, name: name})
+    }) 
+    //submit payment
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: "https://getorderup.com",
+        receipt_email: email,
       },
     });
 
@@ -94,6 +100,13 @@ export default function CheckoutForm({clientSecret}) {
   return (
     <> 
     <form id="payment-form" onSubmit={handleSubmit} className="mt-3">
+        <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name on Card"
+          />
        <input
         id="email"
         type="text"
