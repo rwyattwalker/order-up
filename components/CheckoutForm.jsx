@@ -80,7 +80,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "https://4081-2600-8804-400d-7500-00-2c96.ngrok.io/success",
+        return_url: "https://www.getorderup.com/success",
         receipt_email: email,
       },
     });
@@ -136,7 +136,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       </div>
       <button disabled={isLoading || !stripe || !elements || !checked} id="submit" className="w-full py-2 bg-blue-500 rounded text-white font-semibold">
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Buy Now"}
+          {isLoading ? "Buy Now" : "Buy Now"}
         </span>
       </button>
       {/* Show any error or success messages */}

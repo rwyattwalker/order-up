@@ -1,10 +1,10 @@
 import React from 'react'
 
-function success() {
+function Success() {
 
   return (
-    <div>success</div>
+    <div className="mt-20">Order Placed</div>
   )
 }
 
-export default success
+export default Success

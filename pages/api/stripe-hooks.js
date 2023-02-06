@@ -3,7 +3,7 @@ import {buffer} from 'micro'
 const nodemailer = require("nodemailer");
 export const config = { api: {bodyParser: false}};
 
-const endpointSecret = "whsec_svvEvWWApNGkgcqKy3xtu3zggi0G6OkD";
+const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
@@ -39,7 +39,7 @@ const handler = async (req, res) => {
         from: 'support@getorderup.com',
         to: customer.email,
         subject: 'Success!',
-        html:"<p>Testing<p>"
+        html:"<h1>Congratulations<h1><p>You are one step closer to owning the most efficient and user friendly food truck in town!</p>"
        }, (err, info) => {
         if(err){
           console.log(err);

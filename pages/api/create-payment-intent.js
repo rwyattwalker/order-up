@@ -27,7 +27,7 @@ const calculateOrderAmount = (items) => {
 export default async function handler(req, res) {
   const { items } = req.body;
   let desc = "";
-  items.map((e)=> desc += (`${e.name}: Development Fee - $${e.fee}, Monthly Fee - $${e.price}`))
+  items.map((e)=> desc += (` ${e.name}: Development Fee - $${e.fee}, Monthly Fee - $${e.price}.`))
   console.log(items)
   const orderTotal = calculateOrderAmount(items)
   const customer = await stripe.customers.create();
