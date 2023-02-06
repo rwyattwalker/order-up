@@ -136,7 +136,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       </div>
       <button disabled={isLoading || !stripe || !elements || !checked} id="submit" className="w-full py-2 bg-blue-500 rounded text-white font-semibold">
         <span id="button-text">
-          {isLoading ? "Buy Now" : "Buy Now"}
+          {isLoading ? <div className="spinner" id="spinner"></div> : "Buy Now"}
         </span>
       </button>
       {/* Show any error or success messages */}
