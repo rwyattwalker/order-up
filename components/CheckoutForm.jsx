@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Link from "next/link";
 import {
   PaymentElement,
@@ -15,6 +15,24 @@ export default function CheckoutForm({clientSecret, customer}) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [checked, setChecked] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
+
+  useEffect(()=>{
+    if(!stripe||!elements){
+      return;
+    }
+    const pr = stripe.paymentRequest({
+    currency:'usd',
+    country: 'US',
+    requestPayerEmail:true,
+    requestPayerName:true,
+    total:{
+      label:"Lots of Money",
+      amount:5,
+    }
+  })
+  }, [stripe, elements])
+  
+  
 
   const handleCheck = (event) => {
     setChecked(event.target.checked);
