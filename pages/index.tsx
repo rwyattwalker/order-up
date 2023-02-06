@@ -22,11 +22,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content="Digital Solutions for Food Trucks | Order Up" />
         <meta property="og:image" content="/evolve-white.png" />
+        <meta name="theme-color" content="#ffffff"></meta>
         <link rel="icon" href="/favicon.ico" />
       
       </Head>
-      <main className="min-h-[90vh] flex bg-offwhite text-black pt-20 pb-10">
-        <div className='xl:my-24 2xl:mx-[15rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col w-full px-2'>
+      <main className="min-h-[90vh] flex bg-offwhite text-black pb-10">
+        <div className='xl:my-24 2xl:mx-[15rem] xl:mx-[12rem] lg:mx-[10rem] md:my-20 sm:mt-10 sm:mx-[2rem] flex flex-col w-full px-2 pt-20'>
           <div className='flex h-full justify-around pointer-events-none  flex-col-reverse sm:flex-row'>
             <div className='flex flex-col gap-3 md:flex-col lg:my-auto justify-center max-w-md'>
               <div className='text-4xl sm:text-5xl mb-1 smLmb-5 font-bold text-left'>Tech designed with food trucks in mind.</div>

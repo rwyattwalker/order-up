@@ -67,7 +67,7 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
       </div>
     }
     {hamburger &&
-      <div className='w-full  font-bold text-lg text-black bg-white flex flex-col fixed z-[50000]' >
+      <div className='fixed w-full  font-bold text-lg text-black bg-white flex flex-col z-[50000]' >
         <div className='flex w-full justify-between'>
           <Link className='hover:cursor-pointer my-auto mx-2 flex' href={"/"} onClick={()=>setOpen(false)}>
             <Image src="/hamburger-black.png" width={50} height={50} alt="logo" />
