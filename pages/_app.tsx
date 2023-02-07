@@ -9,12 +9,12 @@ export default function App({ Component, pageProps }: AppProps) {
   <ShoppingCartProvider>
     <ClientOnly>
        <div className='hidden sm:inline'>
-        <Navbar hamburger={false} getStarted dark shoppingCart/>
+        <Navbar hamburger={false} getStarted dark shoppingCart={typeof window != "undefined" && window.location.href.indexOf('checkout') > -1 ? false : true} />
       </div>
     </ClientOnly>
    <ClientOnly>
      <div className='sm:hidden'>
-      <Navbar hamburger={true} getStarted dark />
+      <Navbar hamburger={true} getStarted dark shoppingCart={typeof window != "undefined" && window.location.href.indexOf('checkout') > -1 ? false : true}/>
     </div>
    </ClientOnly>
     <Component {...pageProps} />

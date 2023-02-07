@@ -18,16 +18,15 @@ export default function Checkout() {
   const {cartItems} = useShoppingCart();
   const [paymentInt, setPaymentInt] = React.useState(null);
   React.useEffect(() => {
-    console.log('running')
-    // Create PaymentIntent as soon as the page loads
-    fetch("/api/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json"
-    },
-      body: JSON.stringify({ items: cartItems }),
-    })
-      .then((res) => res.json())
-      .then((data) => setPaymentInt(data))
+      // Create PaymentIntent as soon as the page loads
+      fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json"
+      },
+        body: JSON.stringify({ items: cartItems }),
+      })
+        .then((res) => res.json())
+        .then((data) => setPaymentInt(data))
   }, []);
   const calculateOrderAmount = (items) => {
     let total = 0;
@@ -70,7 +69,7 @@ export default function Checkout() {
     <div className="flex min-w-[100vw] min-h-[100vh] sm:min-h-[93vh] bg-[#e1e1e1] justify-center sm:mt-[70px]">
       <div className="flex flex-col mt-[80px] md:my-auto mx-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
       <div className="flex justify-center lg:justify-between w-full h-fit gap-10">
-        <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%]">
+        <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%] min-h-[500px]">
           <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
         </div>
           <div className="h-fit my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 rounded">
@@ -96,8 +95,10 @@ export default function Checkout() {
           </div> */}
           {/* <div className="separator flex flex-col w-full h-[1px] my-5"></div> */}
         {!clientSecret &&
-          <div className="mx-auto">
-            <CircularProgress />
+          <div className="mx-auto min-h-[500px] justify-center flex">
+            <div className="my-auto h-fit">
+              <CircularProgress />
+            </div>
           </div>
         }
         

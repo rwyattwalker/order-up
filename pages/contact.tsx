@@ -30,7 +30,7 @@ function Contact() {
   async function handleSubmit(e:any) {
     e.preventDefault();
     setLoading(true)
-    const response = await fetch("/api/form", {
+    const response = await fetch("/api/contact-form", {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

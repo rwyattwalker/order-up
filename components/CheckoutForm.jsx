@@ -7,9 +7,11 @@ import {
   useElements,
   PaymentRequestButtonElement
 } from "@stripe/react-stripe-js";
+import {GiPartyPopper} from 'react-icons/gi'
+import { CircularProgress } from "@mui/material";
 
 export default function CheckoutForm({clientSecret, customer}) {
-  const {cartItems} = useShoppingCart();
+  const {cartItems, clearCart} = useShoppingCart();
   const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
@@ -25,6 +27,7 @@ export default function CheckoutForm({clientSecret, customer}) {
   const [expYear, setExpYear]= useState("");
   const [expMonth, setExpMonth]= useState("");
   const [cvc, setCvc] = useState("");
+  const [response, setResponse] = useState(null)
   const calculateOrderAmount = (items) => {
     let total = 0;
     items.map((e)=> {
@@ -91,7 +94,9 @@ export default function CheckoutForm({clientSecret, customer}) {
     if(paymentIntent.status == 'requires_action'){
       stripe.confirmCardPayment(clientSecret);
     }
-     router.push('/success')
+    console.log(paymentIntent)
+    clearCart()
+    setResponse(paymentIntent) 
     });
     
   }, [stripe, elements])
@@ -178,35 +183,44 @@ export default function CheckoutForm({clientSecret, customer}) {
       body:JSON.stringify({paymentIntent, paymentMethod})
     }).then((res)=>res.json())
     console.log(response, "RETURNED PAYMENT INTENT")
-    if(response.status === "succeeded"){
-      router.push('/success')
-    }
-    // const { error } = await stripe.confirmPayment({
-    //   elements,
-    //   confirmParams: {
-    //     // Make sure to change this to your payment completion page
-    //     return_url: "https://www.getorderup.com/success",
-    //     receipt_email: email,
-    //   },
-    // });
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
-    // if (error?.type === "card_error" || error.type === "validation_error") {
-    //   setMessage(error.message);
-    // } else {
-    //   setMessage("An unexpected error occurred.");
-    // }
-
+    setResponse(response)
+    clearCart()
     setIsLoading(false);
   };
 
 
   return (
-    <> 
-    <form id="payment-form" onSubmit={handleSubmit} className="mt-3"> 
+    <>   
+    {response && response.status == 'succeeded' &&
+      <div className='flex'>
+        <div className='flex flex-col max-w-xl gap-2 my-auto'>
+          <h1 className='mt-5 font-bold text-3xl text-left'>Payment Success! <GiPartyPopper className="inline -mt-2"/></h1>
+          <p>Your payment has been submitted successfully, a automated receipt will be sent to your email.</p>
+          <div className="flex flex-col">
+            <h2 className="text-gray-400 font-semibold">Transaction ID:</h2>
+            <h2 className="text-gray-400 font-semibold">{response.id}</h2>
+          </div>
+          <div className="flex flex-col">
+            <h2 className="text-gray-400 font-semibold">Transaction Amount:</h2>
+            <h2 className="text-gray-400 font-semibold">${response.amount / 100}.00</h2>
+          </div> 
+          
+          <div className='flex gap-1'>
+            <Link href='/'><button className='bg-orange-500 w-fit rounded font-semibold text-white px-2 py-2'>Back to Home</button></Link>
+            <button className='bg-orange-500 w-fit rounded font-semibold text-white px-2 py-2' onClick={()=>window.print()}>Save as PDF</button>
+          </div>
+        </div>
+      </div>
+    }
+    {isLoading &&
+      <div className="mx-auto min-h-[500px] justify-center flex">
+        <div className="my-auto h-fit">
+          <CircularProgress />
+        </div>
+      </div>
+    }
+    {!response && !isLoading &&
+      <form id="payment-form" onSubmit={handleSubmit} className="mt-3"> 
       {
         <>
         {paymentRequest && <PaymentRequestButtonElement options={{paymentRequest}}/>}
@@ -285,6 +299,8 @@ export default function CheckoutForm({clientSecret, customer}) {
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
+    }
+    
     </>
   );
 }

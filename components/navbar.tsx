@@ -74,7 +74,8 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
             <div className='my-auto text-xl font-bold'>| ORDER UP</div>
           </Link> 
           <div className='flex'>
-            <div className=' my-auto'>
+            {shoppingCart &&
+              <div className=' my-auto'>
               <BsCart4 className='my-auto relative cursor-pointer text-3xl mx-3' onClick={()=>visible ? closeCart() : openCart()}/>
               <div className={`${cartItems.length == 0 && 'hidden'} rounded-full bg-blue-500 flex justify-center align-middle text-xs`}
                       style={{
@@ -91,7 +92,8 @@ function Navbar({hamburger, home, dark, shoppingCart, getStarted}:propTypes) {
                 </div>
               <Cart />
             </div>
-            <div className='flex separator h-[80%] my-auto'></div>
+            }
+            {shoppingCart &&<div className='flex separator h-[80%] my-auto'></div>}
            <GiHamburgerMenu className={`text-3xl z-50 my-5 mx-3 ${open ? 'text-black': 'text-black'}`} onClick={handleToggle}/> 
           </div>
        
