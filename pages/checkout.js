@@ -95,7 +95,7 @@ export default function Checkout() {
           </div> */}
           {/* <div className="separator flex flex-col w-full h-[1px] my-5"></div> */}
         {!clientSecret &&
-          <div className="mx-auto min-h-[500px] justify-center flex">
+          <div className="mx-auto min-h-[500px] min-w-[300px] justify-center flex">
             <div className="my-auto h-fit">
               <CircularProgress />
             </div>
