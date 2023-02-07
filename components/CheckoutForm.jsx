@@ -221,10 +221,10 @@ export default function CheckoutForm({clientSecret, customer}) {
     }
     {!response && !isLoading &&
       <form id="payment-form" onSubmit={handleSubmit} className="mt-3"> 
-      {
+      {paymentRequest &&
         <>
-        {paymentRequest && <PaymentRequestButtonElement options={{paymentRequest}}/>}
-         <div className="text-xs">By clicking the pay button you certify that you have read and agree to our <Link target={"_blank"} href={'/terms'}><span className="text-blue-500">Terms of Service</span></Link></div>
+       <PaymentRequestButtonElement options={{paymentRequest}}/>
+        <div className="text-xs">By clicking the pay button you certify that you have read and agree to our <Link target={"_blank"} href={'/terms'}><span className="text-blue-500">Terms of Service</span></Link></div>
         <div className="text-center font-bold">OR</div>
         </>
       }
