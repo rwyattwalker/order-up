@@ -10,7 +10,7 @@ import {
 import {GiPartyPopper} from 'react-icons/gi'
 import { CircularProgress } from "@mui/material";
 
-export default function CheckoutForm({clientSecret, customer}) {
+export default function CheckoutForm({clientSecret, customer, setCompleted}) {
   const {cartItems, clearCart} = useShoppingCart();
   const router = useRouter();
   const stripe = useStripe();
@@ -95,6 +95,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       stripe.confirmCardPayment(clientSecret);
     }
     console.log(paymentIntent)
+    setCompleted(true)
     clearCart()
     setResponse(paymentIntent) 
     });
@@ -185,6 +186,7 @@ export default function CheckoutForm({clientSecret, customer}) {
     console.log(response, "RETURNED PAYMENT INTENT")
     setResponse(response)
     if(response.status === 'succeeded'){
+       setCompleted(true)
        clearCart()
     }
     setIsLoading(false);

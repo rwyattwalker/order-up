@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
+import React, {useState} from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import {useShoppingCart} from '../context/ShoppingCartContext.tsx'
@@ -16,6 +16,7 @@ const stripePromise = loadStripe("pk_test_51MSWxUFWbP8S10HmRdxmh5X16w7A9Cq53NwDL
 
 export default function Checkout() {
   const {cartItems} = useShoppingCart();
+  const [completed, setCompleted] = useState(false);
   const [paymentInt, setPaymentInt] = React.useState(null);
   React.useEffect(() => {
       // Create PaymentIntent as soon as the page loads
@@ -67,13 +68,14 @@ export default function Checkout() {
 
   return (<ClientOnly>
     <div className="flex min-w-[100vw] min-h-[100vh] sm:min-h-[93vh] bg-[#e1e1e1] justify-center sm:mt-[70px]">
-      <div className="flex flex-col mt-[80px] md:my-auto mx-auto md:w-[750px] lg:w-[1000px] xl:w-[1200px] gap-2">
-      <div className="flex justify-center lg:justify-between w-full h-fit gap-10">
+      <div className="h-full flex flex-col mt-[80px] md:my-auto mx-auto md:w-[750px] lg:w-[1200px] xl:w-[1200px] gap-2">
+      <div className="flex justify-center lg:justify-between w-full h-full gap-10">
         <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%] min-h-[500px]">
           <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
         </div>
-          <div className="h-fit my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 rounded">
-           {/* <div className="flex flex-col mx-auto border border-gray-200 rounded w-full px-4 h-50 overflow-x-hidden overflow-y-scroll scrollbar-hide">
+          <div className={`${completed && 'h-fit'} h-full my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 rounded`}>
+           {!completed &&
+            <div className="flex flex-col mx-auto border border-gray-200 rounded w-full px-4 overflow-x-hidden overflow-y-scroll scrollbar-hide">
             <div className="flex flex-col h-fit mt-2">
               <div className="font-bold text-2xl">Order Summary</div>
               <div className="font-semibold ml-2 text-gray-500 border-b border-gray-500">Services</div>
@@ -92,8 +94,9 @@ export default function Checkout() {
               </div>
 
             </div>
-          </div> */}
-          {/* <div className="separator flex flex-col w-full h-[1px] my-5"></div> */}
+          </div> 
+          }
+          {!completed && <div className="separator flex flex-col w-full h-[1px] my-5"></div>}
         {!clientSecret &&
           <div className="mx-auto min-h-[500px] min-w-[300px] justify-center flex">
             <div className="my-auto h-fit">
@@ -104,7 +107,7 @@ export default function Checkout() {
         
          {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm  clientSecret={paymentInt.clientSecret} customer={paymentInt.customer} />
+            <CheckoutForm  clientSecret={paymentInt.clientSecret} customer={paymentInt.customer} setCompleted={setCompleted} completed={completed} />
           </Elements>
          )}
         </div> 
