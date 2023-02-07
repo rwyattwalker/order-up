@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from "react";
 import Link from "next/link";
+import {useShoppingCart} from '../context/ShoppingCartContext.tsx'
 import {
-  PaymentElement,
   useStripe,
-  useElements
+  useElements,
+  PaymentRequestButtonElement
 } from "@stripe/react-stripe-js";
 
 export default function CheckoutForm({clientSecret, customer}) {
+  const {cartItems} = useShoppingCart();
   const stripe = useStripe();
   const elements = useElements();
   const [name, setName] = React.useState("")
@@ -15,6 +17,33 @@ export default function CheckoutForm({clientSecret, customer}) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [checked, setChecked] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
+  const [paymentRequest, setPaymentRequest] = useState(null);
+  const [cardNumber, setCardNumber] = useState("");
+  const [exp, setExp] = useState("");
+  const [expYear, setExpYear]= useState("");
+  const [expMonth, setExpMonth]= useState("");
+  const [cvc, setCvc] = useState("");
+  const calculateOrderAmount = (items) => {
+    let total = 0;
+    items.map((e)=> {
+      if(e.name =='Premium Web'){
+        total += (1199*e.quantity)
+      }
+      if(e.name == 'Basic Web'){
+        total += (999*e.quantity)
+      }
+      if(e.name == 'Mobile Ordering'){
+        total += (499*e.quantity)
+      }
+      if(e.name == 'Event Booking'){
+        total += (199*e.quantity)
+      }
+      if(e.name == 'Order Up Bundle!'){
+        total += (1499*e.quantity)
+      }
+    })
+    return total;
+  };
 
   useEffect(()=>{
     if(!stripe||!elements){
@@ -27,31 +56,73 @@ export default function CheckoutForm({clientSecret, customer}) {
     requestPayerName:true,
     total:{
       label:"Lots of Money",
-      amount:5,
-    }
+      amount:calculateOrderAmount(cartItems),
+    },
+    disableWallets:["link"]
   })
+    pr.canMakePayment().then((result)=>{
+      if(result){
+        setPaymentRequest(pr)
+      }
+    })
+    pr.on('paymentmethod', async (e) => {
+      console.log(e, 'payment method')
+      //Update Customer
+      await fetch('/api/update-customer', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"
+      },
+      body: JSON.stringify({customerId: customer, email: e.payerEmail, name: e.payerName})
+      }) 
+      const {error, paymentIntent} = await stripe.confirmCardPayment(
+      clientSecret,{
+        payment_method: e.paymentMethod.id,
+      },{
+        handleActions: false,
+      }
+    )
+    if(error){
+      e.complete('fail');
+      return;
+    }
+    e.complete('success');
+    if(paymentIntent.status == 'requires_action'){
+      stripe.confirmCardPayment(clientSecret);
+    }
+    });
+    
   }, [stripe, elements])
-  
-  
+  const handleChange = (text) => {
+    console.log(text, "text")
+    let textTemp = text;
+    if (textTemp.length === 2) {
+      if(exp.length ===1){
+        textTemp += '/';
+      }
+    }
+    if(textTemp.length === 5){
+      setExpMonth(parseInt(textTemp.split("/")[0]))
+      setExpYear(parseInt('20'+(textTemp.split("/")[1])))
+    }
+    if(textTemp.length > 5){
+      return
+    }
+    setExp(textTemp)
+  }
 
   const handleCheck = (event) => {
     setChecked(event.target.checked);
   }
-
-
   React.useEffect(() => {
     if (!stripe) {
       return;
     }
-
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
-
     if (!clientSecret) {
       return;
     }
-
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case "succeeded":
@@ -71,15 +142,18 @@ export default function CheckoutForm({clientSecret, customer}) {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
+    if(!stripe){
       return;
     }
+    e.preventDefault();
     setIsLoading(true);
-
+    const paymentMethod = await fetch('/api/create-payment-method',{
+      method:'POST',
+      headers:{'Content-Type':"application/json"},
+      body: JSON.stringify({card:{number:cardNumber, exp_month: expMonth, exp_year:expYear, cvc:cvc}})
+    })
+    .then((res)=> res.json())
+    console.log(paymentMethod, 'The Response')
     //check email
     if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
       setInvalidEmail(true)
@@ -91,41 +165,48 @@ export default function CheckoutForm({clientSecret, customer}) {
       method: 'POST',
       headers: { "Content-Type": "application/json"
     },
-      body: JSON.stringify({customerId: customer, email: email, name: name})
+      body: JSON.stringify({customerId: customer, email: email, name: name, paymentMethod:paymentMethod})
     }) 
     //submit payment
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "https://www.getorderup.com/success",
-        receipt_email: email,
-      },
-    });
-
+    const paymentIntent = await stripe.retrievePaymentIntent(clientSecret)
+    const response = await fetch('/api/confirm-payment-intent',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({paymentIntent, paymentMethod})
+    }).then((res)=>res.json())
+    console.log(response, "RETURNED PAYMENT INTENT")
+    // const { error } = await stripe.confirmPayment({
+    //   elements,
+    //   confirmParams: {
+    //     // Make sure to change this to your payment completion page
+    //     return_url: "https://www.getorderup.com/success",
+    //     receipt_email: email,
+    //   },
+    // });
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
     // your `return_url`. For some payment methods like iDEAL, your customer will
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
-    } else {
-      setMessage("An unexpected error occurred.");
-    }
+    // if (error?.type === "card_error" || error.type === "validation_error") {
+    //   setMessage(error.message);
+    // } else {
+    //   setMessage("An unexpected error occurred.");
+    // }
 
     setIsLoading(false);
   };
 
 
-  const paymentElementOptions = {
-    layout: "tabs",
-  };
-
-
   return (
     <> 
-    <form id="payment-form" onSubmit={handleSubmit} className="mt-3">
+    <form id="payment-form" onSubmit={handleSubmit} className="mt-3"> 
+      {
+        <>
+        {paymentRequest && <PaymentRequestButtonElement options={{paymentRequest}}/>}
+        <div className="text-center font-bold">OR</div>
+        </>
+      }
         <label for="name" className="text-sm">Name</label>
         <input
             id="name"
@@ -144,7 +225,41 @@ export default function CheckoutForm({clientSecret, customer}) {
         placeholder="Email"
         className={`bg-[#F1F1F1] h-12 rounded-xl w-full mb-3 p-[16px] placeholder-black placeholder:font-light ${invalidEmail && 'border border-red-400'}`}
       />
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
+      <label for="card" className="text-sm">Card Number</label>
+      <input
+        id="card"
+        type="text"
+        value={cardNumber}
+        onChange={(e) => setCardNumber(e.target.value)}
+        placeholder="1234 1234 1234 1234"
+        className={`bg-[#F1F1F1] h-12 rounded-xl w-full mb-3 p-[16px] placeholder-black placeholder:font-light ${invalidEmail && 'border border-red-400'}`}
+      />
+      <div className="flex gap-2">
+        <div className="flex flex-col w-1/2">
+            <label for="cvc" className="text-sm">CVC</label>
+            <input
+              id="cvc"
+              type="text"
+              value={cvc}
+              onChange={(e) => setCvc(e.target.value)}
+              placeholder="CVC"
+              className={`bg-[#F1F1F1] h-12 rounded-xl w-full mb-3 p-[16px] placeholder-black placeholder:font-light ${invalidEmail && 'border border-red-400'}`}
+            />
+        </div>
+        <div className="flex flex-col w-1/2">
+           <label for="exp" className="text-sm">Exp</label>
+            <input
+              id="exp"
+              type="text"
+              value={exp}
+              onChange={(e) => handleChange(e.target.value)}
+              placeholder="MM/YY"
+              className={`bg-[#F1F1F1] h-12 rounded-xl w-full mb-3 p-[16px] placeholder-black placeholder:font-light ${invalidEmail && 'border border-red-400'}`}
+            />
+        </div>
+      </div>
+     
+     
       <div className="mt-2">     
       <label> 
         <input id="tos" type="checkbox" className="m-1 text-center" name="terms-and-conditions" onChange={handleCheck}/>
