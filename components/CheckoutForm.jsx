@@ -184,7 +184,9 @@ export default function CheckoutForm({clientSecret, customer}) {
     }).then((res)=>res.json())
     console.log(response, "RETURNED PAYMENT INTENT")
     setResponse(response)
-    clearCart()
+    if(response.status === 'succeeded'){
+       clearCart()
+    }
     setIsLoading(false);
   };
 
