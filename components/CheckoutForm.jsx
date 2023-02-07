@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {useRouter} from 'next/router'
 import Link from "next/link";
 import {useShoppingCart} from '../context/ShoppingCartContext.tsx'
 import {
@@ -9,6 +10,7 @@ import {
 
 export default function CheckoutForm({clientSecret, customer}) {
   const {cartItems} = useShoppingCart();
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const [name, setName] = React.useState("")
@@ -56,7 +58,7 @@ export default function CheckoutForm({clientSecret, customer}) {
     requestPayerName:true,
     total:{
       label:"Lots of Money",
-      amount:calculateOrderAmount(cartItems),
+      amount:(calculateOrderAmount(cartItems)*100),
     },
     disableWallets:["link"]
   })
@@ -89,6 +91,7 @@ export default function CheckoutForm({clientSecret, customer}) {
     if(paymentIntent.status == 'requires_action'){
       stripe.confirmCardPayment(clientSecret);
     }
+     router.push('/success')
     });
     
   }, [stripe, elements])
@@ -165,7 +168,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       method: 'POST',
       headers: { "Content-Type": "application/json"
     },
-      body: JSON.stringify({customerId: customer, email: email, name: name, paymentMethod:paymentMethod})
+      body: JSON.stringify({customerId: customer, email: email, name: name})
     }) 
     //submit payment
     const paymentIntent = await stripe.retrievePaymentIntent(clientSecret)
@@ -175,6 +178,9 @@ export default function CheckoutForm({clientSecret, customer}) {
       body:JSON.stringify({paymentIntent, paymentMethod})
     }).then((res)=>res.json())
     console.log(response, "RETURNED PAYMENT INTENT")
+    if(response.status === "succeeded"){
+      router.push('/success')
+    }
     // const { error } = await stripe.confirmPayment({
     //   elements,
     //   confirmParams: {
@@ -204,6 +210,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       {
         <>
         {paymentRequest && <PaymentRequestButtonElement options={{paymentRequest}}/>}
+         <div className="text-xs">By clicking the pay button you certify that you have read and agree to our <Link target={"_blank"} href={'/terms'}><span className="text-blue-500">Terms of Service</span></Link></div>
         <div className="text-center font-bold">OR</div>
         </>
       }
@@ -229,6 +236,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       <input
         id="card"
         type="text"
+        autoComplete="off"
         value={cardNumber}
         onChange={(e) => setCardNumber(e.target.value)}
         placeholder="1234 1234 1234 1234"
@@ -240,6 +248,7 @@ export default function CheckoutForm({clientSecret, customer}) {
             <input
               id="cvc"
               type="text"
+              autoComplete="off"
               value={cvc}
               onChange={(e) => setCvc(e.target.value)}
               placeholder="CVC"
@@ -251,6 +260,7 @@ export default function CheckoutForm({clientSecret, customer}) {
             <input
               id="exp"
               type="text"
+              autoComplete="off"
               value={exp}
               onChange={(e) => handleChange(e.target.value)}
               placeholder="MM/YY"
@@ -260,7 +270,7 @@ export default function CheckoutForm({clientSecret, customer}) {
       </div>
      
      
-      <div className="mt-2">     
+      <div className="mb-1">     
       <label> 
         <input id="tos" type="checkbox" className="m-1 text-center" name="terms-and-conditions" onChange={handleCheck}/>
         I have read and agree to the <Link target={"_blank"} href={'/terms'}><span className="text-blue-500">Terms of Service</span></Link>
