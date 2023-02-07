@@ -73,7 +73,7 @@ export default function Checkout() {
         <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%] min-h-[500px]">
           <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
         </div>
-          <div className={`h-[93vh] sm:h-full sm:my-auto flex flex-col justify-start sm:justify-center sm:w-[500px] bg-white p-10 sm:rounded`}>
+          <div className={`min-h-[93vh] sm:min-h-fit sm:h-full sm:my-auto flex flex-col justify-start sm:justify-center sm:w-[500px] bg-white p-10 sm:rounded`}>
            {!completed &&
             <div className="flex flex-col mx-auto border border-gray-200 rounded w-full px-4 overflow-x-hidden overflow-y-scroll scrollbar-hide">
             <div className="flex flex-col h-fit mt-2">
