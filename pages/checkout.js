@@ -68,12 +68,12 @@ export default function Checkout() {
 
   return (<ClientOnly>
     <div className="flex min-w-[100vw] min-h-[100vh] sm:min-h-[93vh] bg-[#e1e1e1] justify-center sm:mt-[70px]">
-      <div className="h-full flex flex-col mt-[80px] md:my-auto mx-auto md:w-[750px] lg:w-[1200px] xl:w-[1200px] gap-2">
+      <div className="h-full flex flex-col mt-[70px] md:my-auto mx-auto md:w-[750px] lg:w-[1200px] xl:w-[1200px] gap-2">
       <div className="flex justify-center lg:justify-between w-full h-full gap-10">
         <div className="hidden lg:inline w-2/3 xl:w-1/2 rounded  relative p-[10%] min-h-[500px]">
           <Image src={'/beautiful-site.png'} fill style={{objectFit:"contain", borderRadius:"15px"}} alt="Beautiful site design" className="rounded" />
         </div>
-          <div className={`${completed && 'h-fit'} h-full my-auto flex flex-col justify-center sm:w-[500px] bg-white p-10 rounded`}>
+          <div className={`h-[93vh] sm:h-full sm:my-auto flex flex-col justify-start sm:justify-center sm:w-[500px] bg-white p-10 sm:rounded`}>
            {!completed &&
             <div className="flex flex-col mx-auto border border-gray-200 rounded w-full px-4 overflow-x-hidden overflow-y-scroll scrollbar-hide">
             <div className="flex flex-col h-fit mt-2">
