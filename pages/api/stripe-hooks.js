@@ -3,7 +3,7 @@ import {buffer} from 'micro'
 const nodemailer = require("nodemailer");
 export const config = { api: {bodyParser: false}};
 
-const endpointSecret = "whsec_ByDI6PaEz4S4UwMhUAUzXRjPBvA5030E";
+const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
