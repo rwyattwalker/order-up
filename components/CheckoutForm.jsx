@@ -10,7 +10,7 @@ import {
 import {GiPartyPopper} from 'react-icons/gi'
 import { CircularProgress } from "@mui/material";
 
-export default function CheckoutForm({clientSecret, customer, setCompleted}) {
+export default function CheckoutForm({clientSecret, customer, setCompleted, completed}) {
   const {cartItems, clearCart} = useShoppingCart();
   const router = useRouter();
   const stripe = useStripe();
@@ -211,7 +211,7 @@ export default function CheckoutForm({clientSecret, customer, setCompleted}) {
           
           <div className='flex gap-1'>
             <Link href='/'><button className='bg-orange-500 w-fit rounded font-semibold text-white px-2 py-2'>Back to Home</button></Link>
-            <button className='bg-orange-500 w-fit rounded font-semibold text-white px-2 py-2' onClick={()=>window.print()}>Save as PDF</button>
+            {/* <button className='bg-orange-500 w-fit rounded font-semibold text-white px-2 py-2' onClick={()=>window.print()}>Save as PDF</button> */}
           </div>
         </div>
       </div>

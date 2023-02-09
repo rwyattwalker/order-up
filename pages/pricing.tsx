@@ -10,8 +10,9 @@ export default function Pricing() {
       <div className='max-w-md md:max-w-4xl flex mx-auto flex-col '>
          <h1 className='font-bold text-3xl mt-12 md:mt-16 2xl:mt-20 text-center' >Flexible plans designed with your needs in mind.</h1>
         <p className=' lg:max-w-3xl mx-2 sm:mx-auto text-center'>
-          Our plans are designed to make it easy and affordable to get the digital presence you need. Want to talk first? 
+          Our plans are designed to make it easy and affordable to get the digital presence you need and to provide the superior user experience to take your business to the next level.
         </p>
+        <p>Got Questions?</p>
         <button className='py-2 px-4 bg-pastel-green rounded-lg inline w-fit text-white font-semibold mx-auto mt-1'>Contact Us</button>
       </div>
         <div className='grid grid-cols-1 md:grid-cols-2 md:max-w-[725px] 2xl:max-w-none 2xl:grid-cols-4 justify-center gap-5 mt-5 mb-5 mx-auto' >

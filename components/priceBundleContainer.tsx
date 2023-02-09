@@ -28,7 +28,7 @@ function PriceBundleContainer({plan, headerText, price, bullets, classes, fee, t
             Our best deal for the 21st Century Food Truck! Includes everything from the <span className='font-semibold'>Premium Web</span> and <span className='font-semibold'>Mobile Ordering</span> Packages, for a reduced cost and setup fee.
           </p>
         
-          <button onClick={()=>increaseCartQuantity(id, plan, price, fee)} className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Add to Order</button>
+          <button onClick={()=>increaseCartQuantity(id, plan, fee, price)} className='py-3 px-4 rounded-full bg-[#97BBAF] my-3 font-semibold mx-4'>Add to Order</button>
         </div>
         <div className='separator h-[80%] w-[80%] md:w-[1px] flex flex-col md:flex-row my-auto mx-auto md:mx-0'></div>
         <div className='flex flex-col mx-auto'>
