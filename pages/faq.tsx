@@ -23,15 +23,15 @@ function App() {
         <FaqContainer 
           title="Design" 
           items={[
-            {question:"Who is going to design my website?", answer: "Your new site will be created by the OrderUp Design Team who specialize solely in creating restaurant websites that make a powerful first impression and help convert visitors into paying customers."}, 
-            {question:'Will my website by mobile friendly', answer:'Yes. Every OrderUp website is mobile friendly and responsive, ensuring your website experience adjusts according to the device your visitor is using.'},
+            {question:"Who is going to design my website?", answer: "The Order Up design team will handle the design of your website. Our designers are highly skilled and will work closely with your project manager to create a website that meets your needs and exceeds your expectations."}, 
+            {question:'Will my website by mobile friendly', answer:'Every Order Up website is mobile friendly and responsive so that your website looks and functions perfectly whether your customers are on desktop or mobile.'},
             {question:'Will I have a say in the design?', answer:'Of course! Our designers create your website around your style and to your specifications. Additionally, we offer three rounds of revisions to your website design before launch.'},
-            {question:'Will my website be SEO Optimized?', answer:"You'll find best practice SEO features, like customizable URLs and meta titles, robust menu schemas, optimized page structures and more in every OrderUp website."},
+            {question:'Will my website be SEO Optimized?', answer:"Rest assured, your website will be optimized for search engines. We use the latest SEO techniques and strategies to ensure your site ranks well and can be easily found by your target audience."},
             ]} /> 
         <FaqContainer 
           title="Hosting" 
           items={[
-            {question:"Is hosting included in my service?", answer: "Absolutely! No need to fear, we take care of all of that for you."}, 
+            {question:"Is hosting included in my service?", answer: "Absolutely! Hosting is included in your service. We'll take care of everything to ensure your website stays up and running smoothly."}, 
             {question:"Do I retain ownership of my domain?", answer: "Yes. You retain complete ownership of your domain."}, 
             {question:"Will my website be secure?", answer: "All Order Up websites are SSL certified and operate under encrypted connections to provide the highest degree of security."}, 
             ]} />
@@ -45,7 +45,7 @@ function App() {
           title="Cost and Billing" 
           items={[
             {question:"When does subscription billing start?", answer: "Subscription billing starts once your project has been completed on the day that it goes live."},
-            {question:"What is the cancelation policy?", answer: "You can cancel your subscription anytime by emailing support@getorderup.com with a request to cancel."}
+            {question:"What is the cancelation policy?", answer: "You can cancel your subscription anytime via a 30 day notice. Just email support@getorderup.com with a request to cancel."}
             ]} />
      
       </div>
