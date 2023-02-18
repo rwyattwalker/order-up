@@ -19,6 +19,7 @@ export default function Checkout() {
   const [completed, setCompleted] = useState(false);
   const [paymentInt, setPaymentInt] = React.useState(null);
   React.useEffect(() => {
+      if(cartItems.length < 1) return
       // Create PaymentIntent as soon as the page loads
       fetch("/api/create-payment-intent", {
         method: "POST",
