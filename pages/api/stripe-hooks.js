@@ -6,7 +6,7 @@ export const config = { api: {bodyParser: false}};
 const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.zoho.com',
+    host: 'smtppro.zoho.com',
     secure:true,
     port:465,
     auth: {
