@@ -61,7 +61,8 @@ const handler = async (req, res) => {
        if(mailRes.err){
         console.log(err);
        }else{
-          console.log('Sent', info.response)
+          console.log(mailRes, "THE MAIL RES")
+          console.log('Sent')
           res.status(200).json({success:true})
       }
       // Then define and call a method to handle the successful payment intent.
