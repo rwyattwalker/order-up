@@ -28,7 +28,7 @@ export default function Checkout() {
       })
         .then((res) => res.json())
         .then((data) => setPaymentInt(data))
-  }, []);
+  }, [cartItems]);
   const calculateOrderAmount = (items) => {
     let total = 0;
     items.map((e)=> {
