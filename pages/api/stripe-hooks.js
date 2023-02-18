@@ -35,7 +35,7 @@ const handler = async (req, res) => {
       console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
       const customer = await stripe.customers.retrieve(paymentIntent.customer);
       console.log(customer, "THE CUSTOMER")
-      await transporter.sendMail({
+      const mailRes = await transporter.sendMail({
         from: 'support@getorderup.com',
         to: customer.email,
         subject: 'Welcome to OrderUp!',
@@ -57,14 +57,13 @@ const handler = async (req, res) => {
         <p>CEO & Founder</p>
         <p>Order Up</p>
         `
-       }, (err, info) => {
-        if(err){
-          console.log(err);
-        }else{
+       })
+       if(mailRes.err){
+        console.log(err);
+       }else{
           console.log('Sent', info.response)
           res.status(200).json({success:true})
-        }
-      })
+      }
       // Then define and call a method to handle the successful payment intent.
       // handlePaymentIntentSucceeded(paymentIntent);
       break;
