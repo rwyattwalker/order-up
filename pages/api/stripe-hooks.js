@@ -8,7 +8,7 @@ const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
     secure:true,
-    port:587,
+    port:465,
     auth: {
         user:'wwalker@evolveweb.io',
         pass:'Sey3qT6Jug4W',
@@ -35,7 +35,7 @@ const handler = async (req, res) => {
       console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
       const customer = await stripe.customers.retrieve(paymentIntent.customer);
       console.log(customer, "THE CUSTOMER")
-      transporter.sendMail({
+      await transporter.sendMail({
         from: 'support@getorderup.com',
         to: customer.email,
         subject: 'Welcome to OrderUp!',
