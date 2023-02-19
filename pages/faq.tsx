@@ -17,7 +17,7 @@ function App() {
           title="Getting Started" 
           items={[
             {question:"What happens after I sign up?", 
-            answer: "Immediately after your purchase a service, your will receive an Email outlining what to expect as we begin the development process. A project manager will be assigned to your project and will reach out within 24 hours to set up an initial development meeting with you. After this meeting, development of your service will begin."}, 
+            answer: "Upon purchasing a service, your will receive an Email outlining what to expect as we begin the development process. This email will include a link which you will use to schedule your development strategy meeting. During this meeting we will ensure that we have all the necessary materials to begin building you an amazing product. After this meeting, development of your service will begin."}, 
             {question:'How long does development take?', answer:'Development time can vary based on a few factors such as the selected services and the amount of design revisions. However we aim to have you up and running with all selected services within a month of purchase.'},
             ]} />
         <FaqContainer 
