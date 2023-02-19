@@ -199,7 +199,7 @@ export default function CheckoutForm({clientSecret, customer, setCompleted, comp
       <div className='flex'>
         <div className='flex flex-col max-w-xl gap-2 my-auto'>
           <h1 className='mt-5 font-bold text-3xl text-left'>Payment Success! <GiPartyPopper className="inline -mt-2"/></h1>
-          <p>Your payment has been submitted successfully, a automated receipt will be sent to your email.</p>
+          <p>Your payment has been submitted successfully, an automated receipt will be sent to your email.</p>
           <div className="flex flex-col">
             <h2 className="text-gray-400 font-semibold">Transaction ID:</h2>
             <h2 className="text-gray-400 font-semibold">{response.id}</h2>
