@@ -3,7 +3,7 @@ import {buffer} from 'micro'
 const nodemailer = require("nodemailer");
 export const config = { api: {bodyParser: false}};
 
-const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
+const endpointSecret = process.env.ENDPOINT_SECRET;
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
@@ -39,8 +39,9 @@ const handler = async (req, res) => {
         from: 'support@getorderup.com',
         to: customer.email,
         subject: 'Welcome to OrderUp!',
-        html: `<p>We are thrilled to welcome you to OrderUp – your go-to partner for innovative food truck software solutions!</h1>
-        ,p>We are honored to have you as a valued customer and we are eager to get started on creating a world-class website and mobile ordering software that will help you take your food truck business to new heights.</p>
+        html: `<img src="cid:welcomebanner.ee"/>
+        <h4>We are thrilled to welcome you to OrderUp – your go-to partner for innovative food truck software solutions!</h4>
+        <p>We are honored to have you as a valued customer and we are eager to get started on creating a world-class website and mobile ordering software that will help you take your food truck business to new heights.</p>
         <p>Step 1 is an initial strategy meeting to kickoff the development of your service.</p>
         <p>You can schedule that meeting at <a href="https://calendly.com/getorderup/strategy-meeting-1">https://calendly.com/getorderup/strategy-meeting-1</a>, we advise that you schedule this meeting as
         soon as possible so we can begin the development of your service.</p>
@@ -52,7 +53,12 @@ const handler = async (req, res) => {
         <p>Wyatt Walker</p>
         <p>CEO & Founder</p>
         <p>Order Up</p>
-        `
+        `,
+        attachments:[{
+          filename:'welcome-banner.png',
+          path:'./public/welcome-banner.png',
+          cid:'welcomebanner.ee'
+        }]
        })
        if(mailRes.err){
         console.log(err);
