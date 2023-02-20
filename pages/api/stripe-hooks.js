@@ -39,10 +39,9 @@ const handler = async (req, res) => {
         from: 'support@getorderup.com',
         to: customer.email,
         subject: 'Welcome to OrderUp!',
-        html: `<p>We are thrilled to welcome you to OrderUp – your go-to partner for innovative food truck software solutions! We are honored to have you as a valued customer and we are eager to get started on creating a world-class website and mobile ordering software that will help you take your food truck business to new heights.</p>
-        <p>We would like to take this opportunity to let you know what to expect as we begin the development process.</p>
-        <p>Step 1 is an initial strategy meeting. During this meeting we will answer any questions you may have and put together our game plan for delivering you the best 
-        service possible.</p>
+        html: `<p>We are thrilled to welcome you to OrderUp – your go-to partner for innovative food truck software solutions!</h1>
+        ,p>We are honored to have you as a valued customer and we are eager to get started on creating a world-class website and mobile ordering software that will help you take your food truck business to new heights.</p>
+        <p>Step 1 is an initial strategy meeting to kickoff the development of your service.</p>
         <p>You can schedule that meeting at <a href="https://calendly.com/getorderup/strategy-meeting-1">https://calendly.com/getorderup/strategy-meeting-1</a>, we advise that you schedule this meeting as
         soon as possible so we can begin the development of your service.</p>
         <p>After the strategy meeting, our team will begin developing your service at full speed. You will receive design and development updates from us as progress is made, and our
