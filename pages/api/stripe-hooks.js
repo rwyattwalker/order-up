@@ -43,12 +43,7 @@ const handler = async (req, res) => {
         html: `<img src="cid:welcomebanner.ee"/>
         <h4>We are thrilled to welcome you to OrderUp – your go-to partner for innovative food truck software solutions!</h4>
         <p>We are honored to have you as a valued customer and we are eager to get started on creating a world-class website and mobile ordering software that will help you take your food truck business to new heights.</p>
-        <p>Step 1 is an initial strategy meeting to kickoff the development of your service.</p>
-        <p>You can schedule that meeting at <a href="https://calendly.com/getorderup/strategy-meeting-1">https://calendly.com/getorderup/strategy-meeting-1</a>, we advise that you schedule this meeting as
-        soon as possible so we can begin the development of your service.</p>
-        <p>After the strategy meeting, our team will begin developing your service at full speed. You will receive design and development updates from us as progress is made, and our
-        team will be available to answer any questions that may arise once we get started, you can email us at any time at support@getorderup.com</p>
-        <p>We understand that building a new website and mobile ordering software can be a complex process, but we are here to make it as easy and seamless as possible. You can be confident that your project will be in safe hands.</p>
+        <p>Get started by scheduling your development strategy meeting at <a href="https://calendly.com/getorderup/strategy-meeting-1">https://calendly.com/getorderup/strategy-meeting-1</a>, during this meeting we will be asking a few questions about your business and will also answer any questions you may have.</p>
         <p>Thank you again for choosing OrderUp as your software solutions provider. We are looking forward to a successful partnership with you and we are eager to get started!</p>
         <p>Best Regards,</p>
         <p>Wyatt Walker</p>
