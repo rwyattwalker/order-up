@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const handler = async (req, res) => {
-  const stripe = initStripe(process.env.STRIPE_SECRET_KEY)
+  const stripe = initStripe("sk_test_51MSWxUFWbP8S10HmW4UE1p1kLW0ENFES63lJzm5tHQrBMloejWuL2N21GqMXaundLLOqQ68GmF3WQwxVlwkVEvjK005df3CpUQ")
   const signature = req.headers['stripe-signature']
   const reqBuffer = await buffer(req)
   let event;
