@@ -1,9 +1,10 @@
 import initStripe from 'stripe'
+import path from 'path'
 import {buffer} from 'micro'
 const nodemailer = require("nodemailer");
 export const config = { api: {bodyParser: false}};
 
-const endpointSecret = "whsec_sKYMPLn03bCseIFJKea2D2FWTVXjLEIB";
+const endpointSecret = process.env.ENDPOINT_SECRET;
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
@@ -16,7 +17,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const handler = async (req, res) => {
-  const stripe = initStripe("sk_test_51MSWxUFWbP8S10HmW4UE1p1kLW0ENFES63lJzm5tHQrBMloejWuL2N21GqMXaundLLOqQ68GmF3WQwxVlwkVEvjK005df3CpUQ")
+  const stripe = initStripe(process.env.STRIPE_SECRET_KEY)
   const signature = req.headers['stripe-signature']
   const reqBuffer = await buffer(req)
   let event;
@@ -56,7 +57,7 @@ const handler = async (req, res) => {
         `,
         attachments:[{
           filename:'welcome-banner.png',
-          path:'./public/welcome-banner.png',
+          path: path.resolve('./public/welcome-banner.png'),
           cid:'welcomebanner.ee'
         }]
        })
